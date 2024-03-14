@@ -5,7 +5,6 @@ import {
   Pokemon,
   PokemonForm,
   PokemonSpecies,
-  PokemonType,
 } from "pokenode-ts";
 import React, { useContext } from "react";
 import { useEffect, useState, useCallback, createContext } from "react";
@@ -52,7 +51,6 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [pokemonData, setPokemonData] = useState<Pokemon>();
   const [varietyIndex, setVarietyIndex] = useState(0);
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>();
-  const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([]);
 
   useEffect(() => {
     getPokemonList().then((l) => {
@@ -106,18 +104,8 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return l;
   };
 
-  const getResourceData = async (url: string) => {
-    const r = await apiClient.utility.getResourceByUrl(url);
-    return r;
-  };
-
   const getPokemonSpeciesData = async (id: number) => {
     const p = await apiClient.pokemon.getPokemonSpeciesById(id);
-    return p;
-  };
-
-  const getPokemonData = async (id: number) => {
-    const p = await apiClient.pokemon.getPokemonById(id);
     return p;
   };
 
@@ -153,13 +141,6 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     });
     return englishName;
   }, []);
-
-  const getPokemonId = (): number => {
-    if (pokemonId) {
-      return pokemonId;
-    }
-    return 1;
-  };
 
   return (
     <PokemonContext.Provider

@@ -29,3 +29,29 @@
     @apply bg-slate-200 dark:bg-slate-800 overflow-x-hidden font-plex;
   }
 }
+
+@layer utilities {
+  .rtl {
+    direction: rtl;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply hidden sm:block sm:w-2;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-200 dark:bg-slate-900;
+  }
+
+  .scrollbar::-webkit-scrollbar-button {
+    @apply hidden;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-400 dark:bg-slate-700;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-500 dark:bg-slate-500;
+  }
+}

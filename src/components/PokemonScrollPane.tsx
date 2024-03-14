@@ -10,7 +10,7 @@ const PokemonScrollPane = ({ id }: Props) => {
   return (
     <div
       onClick={() => updatePokemon(id)}
-      className={`flex items-center w-full ${
+      className={`flex items-center w-full hover:cursor-pointer ${
         id == pokemonId
           ? "bg-slate-500 dark:bg-slate-800"
           : "bg-slate-300 dark:bg-slate-600"

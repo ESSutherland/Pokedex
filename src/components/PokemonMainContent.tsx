@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from "react";
 import PokemonImage from "./PokemonImage";
 import PokemonHeader from "./PokemonHeader";
 import PokemonTypes from "./PokemonTypes";
@@ -7,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { IoSparkles } from "react-icons/io5";
 import { usePokemonContext } from "../context/PokemonContext";
+import PokemonInfo from "./PokemonInfo";
 
 const PokemonMainContent = () => {
   const [isShiny, setIsShiny] = useState(false);
@@ -57,17 +57,19 @@ const PokemonMainContent = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-[600px] items-center relative">
+    <div className=" flex justify-center">
       <div
         className="flex absolute w-[100rem] h-[100rem] rounded-full -top-[55rem] left-1/2 -translate-x-[28rem] -z-10 items-center border-2 border-black/10 transition-all"
-        style={{ backgroundColor: `var(--${getFirstType()})` }}
+        style={{
+          backgroundColor: `var(--${getFirstType()})`,
+        }}
       >
-        <div className="w-[90%] h-[90%] bg-black/40 rounded-full ml-3"></div>
+        <div className="w-[90%] h-[90%] bg-black/40 rounded-full ml-3 "></div>
       </div>
       {isLoading ? (
         <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain h-[300px] w-[300px] animate-spin duration-75 transition-all mt-32"></div>
       ) : (
-        <React.Fragment>
+        <div className="flex flex-col w-full max-w-[600px] h-[600px] items-center relative">
           <PokemonHeader />
           <PokemonTypes />
           <div className="flex flex-1 justify-center">
@@ -76,7 +78,9 @@ const PokemonMainContent = () => {
           <button
             type="button"
             onClick={handleShinyClick}
-            className="bg-slate-200 p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center"
+            className={`bg-slate-200 p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center ${
+              isShiny ? "bg-yellow-400" : "bg-slate-200"
+            }`}
           >
             <IoSparkles className="w-[25px] h-[25px] opacity-70" />
           </button>
@@ -107,8 +111,9 @@ const PokemonMainContent = () => {
               />
             </button>
           </div>
-        </React.Fragment>
+        </div>
       )}
+      <PokemonInfo />
     </div>
   );
 };

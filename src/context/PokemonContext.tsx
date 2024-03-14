@@ -23,6 +23,7 @@ interface PokemonContextType {
   pokemonData: Pokemon | undefined;
   varietyIndex: number;
   pokemonList: NamedAPIResource[] | undefined;
+  pokemonGenus: string | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
   setSpeciesData: React.Dispatch<
@@ -51,6 +52,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [pokemonData, setPokemonData] = useState<Pokemon>();
   const [varietyIndex, setVarietyIndex] = useState(0);
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>();
+  const [pokemonGenus, setPokemonGenus] = useState<string>();
 
   useEffect(() => {
     getPokemonList().then((l) => {
@@ -71,6 +73,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     setVarietyIndex(id);
     getPokemonSpeciesData(pokemonId).then((species: PokemonSpecies) => {
       setSpeciesData(species);
+      setPokemonGenus(getGenus(species));
       getVarietiesData(species).then((varieties: Pokemon[]) => {
         let list = varieties.filter((x) => {
           return x !== undefined;
@@ -132,6 +135,16 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return Promise.all(formList);
   };
 
+  const getGenus = (species: PokemonSpecies) => {
+    let genus = "";
+    species.genera.forEach((gen) => {
+      if (gen.language.name === "en") {
+        genus = gen.genus;
+      }
+    });
+    return genus;
+  };
+
   const getEnglishName = useCallback((nameList: Name[] | undefined) => {
     let englishName = "";
     nameList?.forEach((name) => {
@@ -153,6 +166,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         pokemonData,
         varietyIndex,
         pokemonList,
+        pokemonGenus,
         setIsLoading,
         updatePokemon,
         setSpeciesData,

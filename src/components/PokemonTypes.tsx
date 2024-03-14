@@ -13,7 +13,7 @@ const PokemonTypes = () => {
             style={{ backgroundColor: `var(--${type.type.name})` }}
           >
             <img
-              src={`../icons/${type.type.name}.svg`}
+              src={`icons/${type.type.name}.svg`}
               alt={type.type.name}
               className="w-5 h-5 mx-1"
             />

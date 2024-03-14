@@ -16,8 +16,8 @@ const PokemonScrollBar = ({ active }: Props) => {
   };
   return (
     <div
-      className={`overflow-y-scroll z-10 fixed top-16 lg:top-24 right-0 lg:left-40 lg:max-h-[700px] w-[250px] lg:w-[350px] bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-l-2 border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md ${
-        active ? "h-full" : "h-0"
+      className={`overflow-y-scroll z-10 fixed top-16 lg:top-24 right-0 lg:left-40 lg:max-h-[700px] w-[250px] lg:w-[350px] bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-2 border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md ${
+        active ? "h-full" : "h-0 border-0 overflow-hidden"
       } transition-all`}
     >
       <React.Fragment>

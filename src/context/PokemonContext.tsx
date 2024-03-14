@@ -1,8 +1,10 @@
 import {
+  Ability,
   MainClient,
   Name,
   NamedAPIResource,
   Pokemon,
+  PokemonAbility,
   PokemonForm,
   PokemonSpecies,
 } from "pokenode-ts";
@@ -24,6 +26,7 @@ interface PokemonContextType {
   varietyIndex: number;
   pokemonList: NamedAPIResource[] | undefined;
   pokemonGenus: string | undefined;
+  abilityList: PokemonAbilityType[] | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
   setSpeciesData: React.Dispatch<
@@ -37,6 +40,12 @@ interface PokemonContextType {
     React.SetStateAction<NamedAPIResource[] | undefined>
   >;
   getEnglishName: (nameList: Name[] | undefined) => string;
+  getEnglish: (nameList: any[] | undefined) => string;
+}
+
+interface PokemonAbilityType {
+  ability: Ability;
+  is_hidden: boolean;
 }
 
 const PokemonContext = createContext<PokemonContextType | undefined>(undefined);
@@ -53,6 +62,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [varietyIndex, setVarietyIndex] = useState(0);
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>();
   const [pokemonGenus, setPokemonGenus] = useState<string>();
+  const [abilityList, setAbilityList] = useState<PokemonAbilityType[]>([]);
 
   useEffect(() => {
     getPokemonList().then((l) => {
@@ -80,6 +90,11 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         });
         setVarietiesList(list);
         setPokemonData(list[id]);
+        getAbilities(list[id]).then((abilities) => {
+          getAbilityList(list[id].abilities, abilities).then((abilityList) => {
+            setAbilityList(abilityList);
+          });
+        });
         getForms(list[id]).then((forms) => {
           setFormsList(forms);
           setIsLoading(false);
@@ -135,6 +150,29 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return Promise.all(formList);
   };
 
+  const getAbilityList = async (
+    list: PokemonAbility[],
+    abilities: Ability[]
+  ) => {
+    const abilityList = list.map((ability, index) => {
+      return {
+        ability: abilities[index],
+        is_hidden: ability.is_hidden,
+      };
+    });
+    return abilityList;
+  };
+
+  const getAbilities = async (pokemon: Pokemon) => {
+    let abilityList = pokemon.abilities.map(async (ability) => {
+      let a: Ability = await apiClient.pokemon.getAbilityByName(
+        ability.ability.name
+      );
+      return a;
+    });
+    return Promise.all(abilityList);
+  };
+
   const getGenus = (species: PokemonSpecies) => {
     let genus = "";
     species.genera.forEach((gen) => {
@@ -155,6 +193,19 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return englishName;
   }, []);
 
+  const getEnglish = useCallback((nameList: any[] | undefined) => {
+    let englishName = "";
+    nameList?.forEach((name) => {
+      if (
+        name.language.name === "en" &&
+        name.version_group.name === "scarlet-violet"
+      ) {
+        englishName = name.flavor_text;
+      }
+    });
+    return englishName;
+  }, []);
+
   return (
     <PokemonContext.Provider
       value={{
@@ -167,6 +218,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         varietyIndex,
         pokemonList,
         pokemonGenus,
+        abilityList,
         setIsLoading,
         updatePokemon,
         setSpeciesData,
@@ -176,6 +228,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         updateVariety,
         setPokemonList,
         getEnglishName,
+        getEnglish,
       }}
     >
       {children}

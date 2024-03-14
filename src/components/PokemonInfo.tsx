@@ -1,4 +1,5 @@
 import { usePokemonContext } from "../context/PokemonContext";
+import PokemonAbilities from "./PokemonAbilities";
 
 const PokemonInfo = () => {
   const { isLoading, pokemonData, speciesData } = usePokemonContext();
@@ -57,7 +58,7 @@ const PokemonInfo = () => {
   };
 
   return (
-    <div className="absolute flex flex-wrap gap-2 w-full max-w-[500px] top-[610px] 2xl:top-[50px] 2xl:right-[40px] justify-center">
+    <div className="absolute flex flex-wrap gap-2 w-full max-w-[500px] top-[610px] 2xl:top-[100px] 2xl:right-[40px] justify-center">
       {isLoading ? (
         <></>
       ) : (
@@ -87,18 +88,21 @@ const PokemonInfo = () => {
             <div className="py-3 text-md w-full border-b border-black/80 flex justify-center items-center">
               {getMaleRate()}% <span className="mx-1 text-blue-500">♂</span>{" "}
               <div
-                className={`w-[150px] h-5 rounded-2xl overflow-hidden ${
-                  getFemaleRate() > 0 ? "bg-pink-500" : "bg-slate-400"
-                }`}
+                className={`w-[150px] flex h-5 rounded-2xl overflow-hidden bg-slate-400 border border-black/70 box-content`}
               >
                 <div
                   style={{ width: `${getMaleRate()}%` }}
                   className="bg-blue-500 h-full"
                 ></div>
+                <div
+                  style={{ width: `${getFemaleRate()}%` }}
+                  className="bg-pink-500 h-full"
+                ></div>
               </div>{" "}
               <span className="mx-1 text-pink-500">♀</span> {getFemaleRate()}%
             </div>
           </div>
+          <PokemonAbilities />
         </>
       )}
     </div>

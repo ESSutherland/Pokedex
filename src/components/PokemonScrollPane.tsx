@@ -1,12 +1,28 @@
+import { usePokemonContext } from "../context/PokemonContext";
 import PokemonScrollIcon from "./PokemonScrollIcon";
+
 interface Props {
   id: number;
-  updatePokemon: (id: number) => void;
 }
+const PokemonScrollPane = ({ id }: Props) => {
+  const { updatePokemon, pokemonId } = usePokemonContext();
 
-const PokemonScrollPane = ({ id, updatePokemon }: Props) => {
   return (
-    <div onClick={() => updatePokemon(id)}>
+    <div
+      onClick={() => updatePokemon(id)}
+      className={`flex items-center w-full ${
+        id == pokemonId
+          ? "bg-slate-500 dark:bg-slate-800"
+          : "bg-slate-300 dark:bg-slate-600"
+      } transition-all`}
+    >
+      <div
+        className={`font-bold text-2xl  h-full p-4 flex justify-center items-center bg-black/40 ${
+          id === pokemonId ? " text-slate-300" : " text-slate-200"
+        }`}
+      >
+        <p>#{id.toString().padStart(4, "0")}</p>
+      </div>
       <PokemonScrollIcon id={id} />
     </div>
   );

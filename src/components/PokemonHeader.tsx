@@ -1,39 +1,41 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { usePokemonContext } from "../context/PokemonContext";
 
-interface Props {
-  id: number;
-  name: string;
-  max_id: number;
-  updatePokemon: (id: number) => void;
-}
-const PokemonHeader = ({ id, name, max_id, updatePokemon }: Props) => {
+const PokemonHeader = () => {
+  const { pokemonId, speciesData, pokemonList, updatePokemon, getEnglishName } =
+    usePokemonContext();
+
+  const max_id = pokemonList?.length || 0;
+
   const handlePrevButtonClick = () => {
-    if (id > 1) {
-      updatePokemon(id - 1);
+    if (pokemonId > 1) {
+      updatePokemon(pokemonId - 1);
     }
   };
 
   const handleNextButtonClick = () => {
-    if (id < max_id) {
-      updatePokemon(id + 1);
+    if (pokemonId < max_id) {
+      updatePokemon(pokemonId + 1);
     }
   };
 
   return (
-    <div className="flex justify-between w-[400px]">
+    <div className="flex justify-between w-full h-16 text-slate-100 bg-black/10 mb-4">
       <button
         onClick={handlePrevButtonClick}
-        disabled={id === 1}
-        className="disabled:text-gray-400"
+        disabled={pokemonId === 1}
+        className="disabled:text-slate-400 disabled:hover:cursor-not-allowed"
       >
         <FontAwesomeIcon icon={faCaretLeft} className={"w-[50px] h-[50px]"} />
       </button>
-      <div className="text-4xl font-bold">{name}</div>
+      <div className="text-4xl font-bold leading-relaxed">
+        {getEnglishName(speciesData?.names)}
+      </div>
       <button
         onClick={handleNextButtonClick}
-        disabled={id === max_id}
-        className="disabled:text-gray-400"
+        disabled={pokemonId === max_id}
+        className="disabled:text-slate-400"
       >
         <FontAwesomeIcon icon={faCaretRight} className="w-[50px] h-[50px]" />
       </button>

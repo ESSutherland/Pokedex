@@ -1,19 +1,17 @@
-import { Pokemon } from "pokenode-ts";
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { usePokemonContext } from "../context/PokemonContext";
 
 interface Props {
-  pokemon: Pokemon | undefined;
   is_shiny: boolean;
 }
-const PokemonImage = ({ pokemon, is_shiny }: Props) => {
+const PokemonImage = ({ is_shiny }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const loading =
-    "https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif";
+  const { pokemonData } = usePokemonContext();
 
   let image_url;
-  if (!is_shiny) image_url = pokemon?.sprites.other?.home.front_default;
-  else image_url = pokemon?.sprites.other?.home.front_shiny;
+  if (!is_shiny) image_url = pokemonData?.sprites.other?.home.front_default;
+  else image_url = pokemonData?.sprites.other?.home.front_shiny;
 
   useEffect(() => {
     const LoadedImage = new Image();
@@ -24,11 +22,14 @@ const PokemonImage = ({ pokemon, is_shiny }: Props) => {
   }, []);
 
   return (
-    <div className="h-[300px] w-[300px] flex items-center justify-center">
+    <div className="h-[300px] w-[300px] flex items-center justify-center bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain">
       {isLoading ? (
-        <img src={loading} className="w-[50%] h-[50%]" />
+        <></>
       ) : (
-        <img src={image_url ? image_url : ""} className="h-[300px] w-[300px]" />
+        <img
+          src={image_url ? image_url : ""}
+          className="h-[300px] w-[300px] drop-shadow-2xl transition-all"
+        />
       )}
     </div>
   );

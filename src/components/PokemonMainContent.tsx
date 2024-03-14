@@ -7,6 +7,7 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { usePokemonContext } from "../context/PokemonContext";
 import PokemonInfo from "./PokemonInfo";
 import PokemonShinyButton from "./PokemonShinyButton";
+import PokemonCryButton from "./PokemonCryButton";
 
 const PokemonMainContent = () => {
   const [isShiny, setIsShiny] = useState(false);
@@ -75,10 +76,13 @@ const PokemonMainContent = () => {
           <div className="flex flex-1 justify-center">
             <PokemonImage is_shiny={isShiny} />
           </div>
-          <PokemonShinyButton
-            handleShinyClick={handleShinyClick}
-            isShiny={isShiny}
-          />
+          <div className="flex items-center justify-center gap-4">
+            <PokemonShinyButton
+              handleShinyClick={handleShinyClick}
+              isShiny={isShiny}
+            />
+            <PokemonCryButton />
+          </div>
           <div className="flex justify-between items-center w-full text-slate-200 font-semibold text-xl bg-black/50 sm:rounded-lg">
             <button
               type="button"

@@ -28,6 +28,14 @@
   body {
     @apply bg-slate-200 dark:bg-slate-900 overflow-x-hidden font-plex;
   }
+
+  img {
+    @apply drag-none;
+  }
+
+  .drag-none {
+    -webkit-user-drag: none;
+  }
 }
 
 @layer utilities {

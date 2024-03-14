@@ -1,3 +1,31 @@
-const blocked_forms = ["-totem", "-starter"];
+const blocked_forms = [
+  "-rock-star",
+  "-belle",
+  "-pop-star",
+  "-phd",
+  "-libre",
+  "-cosplay",
+  "-totem",
+  "-unknown",
+  "-eternal",
+  "-spiky-eared",
+  "-starter",
+  "-limited",
+  "-sprinting",
+  "-swimming",
+  "-gliding",
+  "-low-power",
+  "-drive",
+  "-aquatic",
+  "-glide",
+  "-construct",
+  "-own-tempo",
+  "orange-meteor",
+  "yellow-meteor",
+  "green-meteor",
+  "blue-meteor",
+  "indigo-meteor",
+  "violet-meteor",
+];
 
 export default blocked_forms;

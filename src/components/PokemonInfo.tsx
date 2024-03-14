@@ -84,8 +84,19 @@ const PokemonInfo = () => {
             <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
               Gender Rate
             </span>
-            <div className="py-3 text-xl w-full border-b border-black/80">
-              {getMaleRate()}
+            <div className="py-3 text-md w-full border-b border-black/80 flex justify-center items-center">
+              {getMaleRate()}% <span className="mx-1 text-blue-500">♂</span>{" "}
+              <div
+                className={`w-[150px] h-5 rounded-2xl overflow-hidden ${
+                  getFemaleRate() > 0 ? "bg-pink-500" : "bg-slate-400"
+                }`}
+              >
+                <div
+                  style={{ width: `${getMaleRate()}%` }}
+                  className="bg-blue-500 h-full"
+                ></div>
+              </div>{" "}
+              <span className="mx-1 text-pink-500">♀</span> {getFemaleRate()}%
             </div>
           </div>
         </>

@@ -27,7 +27,7 @@ const PokemonHeader = () => {
   };
 
   return (
-    <div className="flex justify-between w-full h-16 text-slate-100 bg-black/30 mb-4">
+    <div className="flex justify-between w-full h-16 text-slate-100 bg-black/30 mb-4 sm:rounded-2xl">
       <button
         onClick={handlePrevButtonClick}
         disabled={pokemonId === 1}

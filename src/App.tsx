@@ -14,9 +14,9 @@ function App() {
             <PokemonMainContent />
             <PokemonScrollBar active={listActive} />
           </PokemonContextProvider>
-          <div className="absolute top-0 -z-10 w-full h-full bg-slate-800"></div>
+          <div className="absolute top-0 -z-10 w-full h-full bg-slate-300 dark:bg-slate-800"></div>
         </div>
-        <div className="bg-slate-500 dark:bg-slate-900 w-full h-16 fixed top-0 lg:bg-slate-500 lg:w-[64px] lg:rounded-full lg:left-[146px] lg:top-[2px] shadow-xl">
+        <div className="bg-slate-400 dark:bg-slate-900 w-full h-16 fixed top-0 lg:bg-slate-400 lg:w-[64px] lg:rounded-full lg:left-40 lg:top-4 shadow-xl">
           <button
             type="button"
             onClick={() => setListActive(!listActive)}

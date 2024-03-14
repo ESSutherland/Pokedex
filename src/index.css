@@ -35,12 +35,16 @@
     direction: rtl;
   }
 
+  .ltr {
+    direction: ltr;
+  }
+
   .scrollbar::-webkit-scrollbar {
     @apply hidden md:block md:w-2;
   }
 
   .scrollbar::-webkit-scrollbar-track {
-    @apply bg-slate-200 dark:bg-slate-900;
+    @apply bg-slate-300 dark:bg-slate-950;
   }
 
   .scrollbar::-webkit-scrollbar-button {

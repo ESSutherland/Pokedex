@@ -9,7 +9,7 @@ const PokemonScrollBar = ({ active }: Props) => {
   const { pokemonList } = usePokemonContext();
   return (
     <div
-      className={`overflow-y-scroll fixed top-16 right-0 sm:left-0 sm:max-h-[700px] w-[250px] sm:w-[350px] bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col border-l-2 border-black scrollbar xl:rtl ${
+      className={`overflow-y-scroll z-10 fixed top-16 lg:top-20 right-0 lg:left-36 lg:max-h-[700px] w-[250px] lg:w-[350px] bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col border-l-2 border-black/20 scrollbar xl:rtl shadow-2xl ${
         active ? "h-full" : "h-0"
       } transition-all`}
     >

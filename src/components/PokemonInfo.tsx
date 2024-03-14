@@ -1,7 +1,7 @@
 import { usePokemonContext } from "../context/PokemonContext";
 
 const PokemonInfo = () => {
-  const { isLoading, pokemonData } = usePokemonContext();
+  const { isLoading, pokemonData, speciesData } = usePokemonContext();
 
   const getWeightInKg = () => {
     if (!pokemonData) return 0;
@@ -37,13 +37,32 @@ const PokemonInfo = () => {
     return `${feet} ${inches}`;
   };
 
+  const getMaleRate = () => {
+    if (!speciesData) return 0;
+
+    let rate = 100 - (speciesData?.gender_rate / 8) * 100;
+    if (rate <= 100) {
+      return rate;
+    }
+    return 0;
+  };
+
+  const getFemaleRate = () => {
+    if (!speciesData) return 0;
+    let rate = (speciesData.gender_rate / 8) * 100;
+    if (rate > 0) {
+      return rate;
+    }
+    return 0;
+  };
+
   return (
-    <div className="absolute flex flex-wrap gap-2 w-full max-w-[500px] top-[610px] 2xl:top-[50px] 2xl:right-[200px] justify-center">
+    <div className="absolute flex flex-wrap gap-2 w-full max-w-[500px] top-[610px] 2xl:top-[50px] 2xl:right-[40px] justify-center">
       {isLoading ? (
         <></>
       ) : (
         <>
-          <div className="w-[150px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center justify-center rounded-lg overflow-hidden border border-black/60 dark:text-white">
+          <div className="w-[150px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center overflow-hidden justify-center rounded-lg border border-black/60 dark:text-white shadow-xl">
             <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
               Weight
             </span>
@@ -52,7 +71,7 @@ const PokemonInfo = () => {
             </div>
             <div className="py-2 text-xl w-full">{getWeightInLbs()}lbs</div>
           </div>
-          <div className="w-[150px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center justify-center rounded-lg overflow-hidden border border-black/60 dark:text-white">
+          <div className="w-[150px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center overflow-hidden justify-center rounded-lg border border-black/60 dark:text-white shadow-xl">
             <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
               Height
             </span>
@@ -60,6 +79,14 @@ const PokemonInfo = () => {
               {getHeightInM()}m{" "}
             </div>
             <div className="py-2 text-xl w-full">{getHeightInFt()}ft</div>
+          </div>
+          <div className="w-[308px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center overflow-hidden justify-center rounded-lg border border-black/60 dark:text-white shadow-xl">
+            <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
+              Gender Rate
+            </span>
+            <div className="py-3 text-xl w-full border-b border-black/80">
+              {getMaleRate()}
+            </div>
           </div>
         </>
       )}

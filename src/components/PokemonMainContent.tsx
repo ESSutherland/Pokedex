@@ -57,9 +57,9 @@ const PokemonMainContent = () => {
   };
 
   return (
-    <div className=" flex justify-center">
+    <div className=" flex justify-center w-full h-[600px] overflow-x-clip relative">
       <div
-        className="flex absolute w-[100rem] h-[100rem] rounded-full -top-[55rem] left-1/2 -translate-x-[28rem] -z-10 items-center border-2 border-black/10 transition-all"
+        className="flex absolute w-[100rem] h-[100rem] rounded-full -top-[55rem] left-1/2 -translate-x-[28rem] -z-[1] items-center border-2 border-black/10 transition-all"
         style={{
           backgroundColor: `var(--${getFirstType()})`,
         }}
@@ -67,7 +67,7 @@ const PokemonMainContent = () => {
         <div className="w-[90%] h-[90%] bg-black/40 rounded-full ml-3 "></div>
       </div>
       {isLoading ? (
-        <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain h-[300px] w-[300px] animate-spin duration-75 transition-all mt-32"></div>
+        <div className="h-[300px] w-[300px] bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin mt-32"></div>
       ) : (
         <div className="flex flex-col w-full max-w-[600px] h-[600px] items-center relative">
           <PokemonHeader />
@@ -84,12 +84,12 @@ const PokemonMainContent = () => {
           >
             <IoSparkles className="w-[25px] h-[25px] opacity-70" />
           </button>
-          <div className="flex justify-between w-full text-slate-200 font-semibold text-xl bg-slate-700">
+          <div className="flex justify-between items-center w-full text-slate-200 font-semibold text-xl bg-black/50">
             <button
               type="button"
               onClick={handlePrevVarietyClick}
               disabled={varietyIndex === 0}
-              className="disabled:text-slate-400"
+              className="disabled:text-slate-400 flex items-center justify-center"
             >
               <FontAwesomeIcon
                 icon={faCaretLeft}
@@ -103,7 +103,7 @@ const PokemonMainContent = () => {
               disabled={
                 varietiesList && varietyIndex === varietiesList?.length - 1
               }
-              className="disabled:text-slate-400"
+              className="disabled:text-slate-400 flex items-center justify-center"
             >
               <FontAwesomeIcon
                 icon={faCaretRight}

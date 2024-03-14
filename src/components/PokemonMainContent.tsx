@@ -4,9 +4,9 @@ import PokemonHeader from "./PokemonHeader";
 import PokemonTypes from "./PokemonTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import { IoSparkles } from "react-icons/io5";
 import { usePokemonContext } from "../context/PokemonContext";
 import PokemonInfo from "./PokemonInfo";
+import PokemonShinyButton from "./PokemonShinyButton";
 
 const PokemonMainContent = () => {
   const [isShiny, setIsShiny] = useState(false);
@@ -57,7 +57,7 @@ const PokemonMainContent = () => {
   };
 
   return (
-    <div className=" flex justify-center w-full h-[600px] overflow-x-clip relative">
+    <div className=" flex justify-center w-full h-[600px] overflow-x-clip relative sm:mt-4">
       <div
         className="flex absolute w-[100rem] h-[100rem] rounded-full -top-[55rem] left-1/2 -translate-x-[28rem] -z-[1] items-center border-2 border-black/10 transition-all"
         style={{
@@ -75,16 +75,11 @@ const PokemonMainContent = () => {
           <div className="flex flex-1 justify-center">
             <PokemonImage is_shiny={isShiny} />
           </div>
-          <button
-            type="button"
-            onClick={handleShinyClick}
-            className={`bg-slate-200 p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center ${
-              isShiny ? "bg-yellow-400" : "bg-slate-200"
-            }`}
-          >
-            <IoSparkles className="w-[25px] h-[25px] opacity-70" />
-          </button>
-          <div className="flex justify-between items-center w-full text-slate-200 font-semibold text-xl bg-black/50">
+          <PokemonShinyButton
+            handleShinyClick={handleShinyClick}
+            isShiny={isShiny}
+          />
+          <div className="flex justify-between items-center w-full text-slate-200 font-semibold text-xl bg-black/50 sm:rounded-lg">
             <button
               type="button"
               onClick={handlePrevVarietyClick}

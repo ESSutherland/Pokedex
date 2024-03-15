@@ -3,18 +3,20 @@ import PokemonMainContent from "./components/PokemonMainContent";
 import PokemonContextProvider from "./context/PokemonContext";
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
+import PokemonEvoChain from "./components/PokemonEvoChain";
 
 function App() {
   const [listActive, setListActive] = useState(false);
   return (
     <>
-      <div className="flex mt-16 lg:mt-0 sm:flex-row justify-center w-full h-[1200px] relative">
-        <div className="w-full lg:mx-36 relative">
+      <div className="flex mt-16 lg:mt-0 justify-center w-full relative min-h-[1200px] overflow-hidden">
+        <div className="w-full lg:mx-36 relative flex flex-col items-center">
           <PokemonContextProvider>
             <PokemonMainContent />
             <PokemonScrollBar active={listActive} />
+            <PokemonEvoChain />
           </PokemonContextProvider>
-          <div className="absolute top-0 -z-10 w-full h-full bg-slate-300 dark:bg-slate-800"></div>
+          <div className="absolute top-0 -z-10 w-full h-[5000px] bg-slate-300 dark:bg-slate-800"></div>
         </div>
         <div className="bg-slate-400 dark:bg-slate-900 w-full h-16 fixed top-0 lg:bg-slate-400 lg:w-[64px] lg:rounded-full lg:left-40 lg:top-4 shadow-xl">
           <button

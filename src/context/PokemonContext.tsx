@@ -1,5 +1,6 @@
 import {
   Ability,
+  EvolutionChain,
   MainClient,
   Name,
   NamedAPIResource,
@@ -11,7 +12,7 @@ import {
 } from "pokenode-ts";
 import React, { useContext } from "react";
 import { useEffect, useState, useCallback, createContext } from "react";
-import blocked_forms from "../data";
+import { blocked_forms } from "../data";
 
 interface PokemonContextProps {
   children: React.ReactNode;
@@ -31,6 +32,7 @@ interface PokemonContextType {
   abilityList: PokemonAbilityType[] | undefined;
   currentForm: PokemonForm | undefined;
   pokemonTypes: Type[] | undefined;
+  evoChain: EvolutionChain | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
   updateForm: (id: number) => void;
@@ -46,6 +48,7 @@ interface PokemonContextType {
   >;
   getEnglishName: (nameList: Name[] | undefined) => string;
   getEnglish: (nameList: any[] | undefined) => string;
+  getResouceByUrl: (url: string) => Promise<any>;
 }
 
 interface PokemonAbilityType {
@@ -71,6 +74,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [abilityList, setAbilityList] = useState<PokemonAbilityType[]>([]);
   const [currentForm, setCurrentForm] = useState<PokemonForm>();
   const [pokemonTypes, setPokemonTypes] = useState<Type[]>();
+  const [evoChain, setEvoChain] = useState<EvolutionChain>();
 
   useEffect(() => {
     getPokemonList().then((l) => {
@@ -99,6 +103,9 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     getPokemonSpeciesData(pokemonId).then((species: PokemonSpecies) => {
       setSpeciesData(species);
       setPokemonGenus(getGenus(species));
+      getEvoChain(species).then((evoChain) => {
+        setEvoChain(evoChain as EvolutionChain);
+      });
       getVarietiesData(species).then((varieties: Pokemon[]) => {
         let list = varieties.filter((x) => {
           return x !== undefined;
@@ -211,6 +218,18 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return Promise.all(typeList);
   };
 
+  const getEvoChain = async (species: PokemonSpecies) => {
+    let evoChain = await apiClient.utility.getResourceByUrl(
+      species.evolution_chain.url
+    );
+    return evoChain;
+  };
+
+  const getResouceByUrl = async (url: string) => {
+    let res = await apiClient.utility.getResourceByUrl(url);
+    return res;
+  };
+
   const getGenus = (species: PokemonSpecies) => {
     let genus = "";
     species.genera.forEach((gen) => {
@@ -261,6 +280,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         abilityList,
         currentForm,
         pokemonTypes,
+        evoChain,
         setIsLoading,
         updatePokemon,
         setSpeciesData,
@@ -272,6 +292,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         setPokemonList,
         getEnglishName,
         getEnglish,
+        getResouceByUrl,
       }}
     >
       {children}

@@ -58,7 +58,7 @@ const PokemonInfo = () => {
   };
 
   return (
-    <div className="flex flex-wrap gap-2 w-full max-w-[500px] h-[250px] justify-center">
+    <div className="flex flex-wrap gap-2 w-full max-w-[500px] justify-center">
       {isLoading ? (
         <></>
       ) : (

@@ -36,9 +36,9 @@ const PokemonMainContent = () => {
         <div className="w-[90%] h-[90%] bg-black/40 rounded-full ml-3 "></div>
       </div>
       {isLoading ? (
-        <div className="h-[300px] w-[300px] bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin mt-32 xl:ml-[500px]"></div>
+        <div className="h-[300px] w-[300px] bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin mt-32 xl:ml-[32%]"></div>
       ) : (
-        <div className="flex flex-col w-full max-w-[600px] h-[600px] items-center relative xl:ml-[500px]">
+        <div className="flex flex-col w-full max-w-[600px] h-[600px] items-center relative xl:ml-[32%]">
           <PokemonHeader />
           <PokemonTypes />
           <div className="flex flex-1 justify-center">

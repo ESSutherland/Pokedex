@@ -23,14 +23,14 @@ const PokemonScrollBar = ({ active }: Props) => {
       <React.Fragment>
         <div className="flex items-center ltr relative">
           <input
-            className="text-left px-2 py-1 my-3 rounded-xl ltr outline-none w-full max-w-[300px] dark:bg-slate-600 dark:text-white"
+            className="text-left px-2 py-1 my-3 mx-3 rounded-xl ltr outline-none w-full max-w-[300px] dark:bg-slate-600 dark:text-white"
             type="text"
             placeholder="Search..."
             onChange={handleChange}
             ref={ref}
           ></input>
           <IoCloseCircle
-            className={`absolute right-2 text-lg dark:text-slate-200`}
+            className={`absolute right-4 text-lg dark:text-slate-200`}
             onClick={() => {
               setSearch("");
               if (ref.current) {

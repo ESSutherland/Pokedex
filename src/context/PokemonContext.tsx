@@ -197,8 +197,9 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     let englishName = "";
     nameList?.forEach((name) => {
       if (
-        name.language.name === "en" &&
-        name.version_group.name === "scarlet-violet"
+        (name.language.name === "en" &&
+          name.version_group.name === "scarlet-violet") ||
+        "sword-shield"
       ) {
         englishName = name.flavor_text;
       }

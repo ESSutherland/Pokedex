@@ -95,7 +95,7 @@ const PokemonMainContent = () => {
                 className={"w-[30px] h-[30px]"}
               />
             </button>
-            <div className="w-[350px] text-center">{getFormName()}</div>
+            <div className="w-[350px] text-center text-lg">{getFormName()}</div>
             <button
               type="button"
               onClick={handleNextVarietyClick}

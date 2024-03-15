@@ -16,14 +16,14 @@ const PokemonScrollBar = ({ active }: Props) => {
   };
   return (
     <div
-      className={`overflow-y-scroll z-10 fixed top-16 lg:top-24 right-0 lg:left-40 lg:max-h-[700px] w-[250px] lg:w-[350px] bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-2 border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md ${
+      className={`overflow-y-scroll z-10 fixed top-16 lg:top-24 right-0 lg:left-40 lg:max-h-[700px] w-[250px] lg:w-[350px] bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md ${
         active ? "h-full" : "h-0 border-0 overflow-hidden"
       } transition-all`}
     >
       <React.Fragment>
         <div className="flex items-center ltr relative">
           <input
-            className="text-left px-2 py-1 my-3 rounded-xl ltr outline-none dark:bg-slate-600 dark:text-white"
+            className="text-left px-2 py-1 my-3 rounded-xl ltr outline-none w-full max-w-[300px] dark:bg-slate-600 dark:text-white"
             type="text"
             placeholder="Search..."
             onChange={handleChange}

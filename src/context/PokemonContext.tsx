@@ -7,6 +7,7 @@ import {
   PokemonAbility,
   PokemonForm,
   PokemonSpecies,
+  Type,
 } from "pokenode-ts";
 import React, { useContext } from "react";
 import { useEffect, useState, useCallback, createContext } from "react";
@@ -24,11 +25,15 @@ interface PokemonContextType {
   formsList: PokemonForm[] | undefined;
   pokemonData: Pokemon | undefined;
   varietyIndex: number;
+  formIndex: number;
   pokemonList: NamedAPIResource[] | undefined;
   pokemonGenus: string | undefined;
   abilityList: PokemonAbilityType[] | undefined;
+  currentForm: PokemonForm | undefined;
+  pokemonTypes: Type[] | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
+  updateForm: (id: number) => void;
   setSpeciesData: React.Dispatch<
     React.SetStateAction<PokemonSpecies | undefined>
   >;
@@ -60,9 +65,12 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [formsList, setFormsList] = useState<PokemonForm[]>([]);
   const [pokemonData, setPokemonData] = useState<Pokemon>();
   const [varietyIndex, setVarietyIndex] = useState(0);
+  const [formIndex, setFormIndex] = useState(0);
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>();
   const [pokemonGenus, setPokemonGenus] = useState<string>();
   const [abilityList, setAbilityList] = useState<PokemonAbilityType[]>([]);
+  const [currentForm, setCurrentForm] = useState<PokemonForm>();
+  const [pokemonTypes, setPokemonTypes] = useState<Type[]>();
 
   useEffect(() => {
     getPokemonList().then((l) => {
@@ -71,16 +79,23 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   }, []);
 
   useEffect(() => {
-    loadData(0);
+    loadData(0, 0);
   }, [pokemonId]);
 
   useEffect(() => {
-    loadData(varietyIndex);
-  }, [varietyIndex]);
+    loadData(varietyIndex, formIndex);
+  }, [varietyIndex, formIndex]);
 
-  const loadData = (id: number) => {
+  useEffect(() => {
+    document.title = `Pokedex - #${pokemonId
+      .toString()
+      .padStart(4, "0")} | ${getEnglishName(speciesData?.names)}`;
+  }, [speciesData, pokemonId]);
+
+  const loadData = (id: number, formId: number) => {
     setIsLoading(true);
     setVarietyIndex(id);
+    setFormIndex(formId);
     getPokemonSpeciesData(pokemonId).then((species: PokemonSpecies) => {
       setSpeciesData(species);
       setPokemonGenus(getGenus(species));
@@ -97,7 +112,11 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         });
         getForms(list[id]).then((forms) => {
           setFormsList(forms);
-          setIsLoading(false);
+          setCurrentForm(forms[formId]);
+          getTypes(forms[formId]).then((types) => {
+            setPokemonTypes(types);
+            setIsLoading(false);
+          });
         });
       });
     });
@@ -113,6 +132,13 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const updateVariety = useCallback(
     (id: number) => {
       setVarietyIndex(id);
+    },
+    [pokemonId]
+  );
+
+  const updateForm = useCallback(
+    (id: number) => {
+      setFormIndex(id);
     },
     [pokemonId]
   );
@@ -141,7 +167,11 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   };
 
   const getForms = async (pokemon: Pokemon) => {
-    let formList = pokemon.forms.map(async (form) => {
+    let list = pokemon.forms.filter((x) => {
+      return !blocked_forms.some((ele) => x.name.includes(ele));
+    });
+
+    let formList = list.map(async (form) => {
       let f: PokemonForm = await apiClient.pokemon.getPokemonFormByName(
         form.name
       );
@@ -173,6 +203,14 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return Promise.all(abilityList);
   };
 
+  const getTypes = async (form: PokemonForm) => {
+    let typeList = form.types.map(async (type) => {
+      let t: Type = await apiClient.pokemon.getTypeByName(type.type.name);
+      return t;
+    });
+    return Promise.all(typeList);
+  };
+
   const getGenus = (species: PokemonSpecies) => {
     let genus = "";
     species.genera.forEach((gen) => {
@@ -197,9 +235,9 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     let englishName = "";
     nameList?.forEach((name) => {
       if (
-        (name.language.name === "en" &&
-          name.version_group.name === "scarlet-violet") ||
-        "sword-shield"
+        name.language.name === "en" &&
+        (name.version_group.name === "scarlet-violet" ||
+          name.version_group.name === "sword-shield")
       ) {
         englishName = name.flavor_text;
       }
@@ -217,9 +255,12 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         formsList,
         pokemonData,
         varietyIndex,
+        formIndex,
         pokemonList,
         pokemonGenus,
         abilityList,
+        currentForm,
+        pokemonTypes,
         setIsLoading,
         updatePokemon,
         setSpeciesData,
@@ -227,6 +268,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         setFormsList,
         setPokemonData,
         updateVariety,
+        updateForm,
         setPokemonList,
         getEnglishName,
         getEnglish,

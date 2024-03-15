@@ -138,7 +138,6 @@ const PokemonEvoChain = () => {
       Object.entries(groupedEvoData).map(
         async ([_stage, image], index: number) => {
           const images: [] = image as [];
-          console.log(images.length, prevImages.length);
           let imgDiv = (
             <div
               key={index}
@@ -177,7 +176,7 @@ const PokemonEvoChain = () => {
       {isLoading ? (
         <></>
       ) : (
-        <div className="sm:w-[90%] max-w-[1200px] sm:rounded-xl overflow-hidden w-full min-h-[300px] dark:text-white bg-black/40 mt-10 flex flex-col items-center justify-center text-center relative mb-10">
+        <div className="sm:w-[90%] max-w-[1200px] sm:rounded-xl overflow-hidden w-full min-h-[300px] dark:text-white bg-black/10 dark:bg-black/60 mt-5 flex flex-col items-center justify-center text-center relative mb-10">
           <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase absolute top-0">
             Evolution Line
           </span>
@@ -219,7 +218,7 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
   const { getEnglishName, updatePokemon, updateVariety } = usePokemonContext();
   return (
     <div
-      className={`text-white bg-black/40 rounded-xl min-h-[120px] min-w-[120px] flex flex-col justify-center items-center ${
+      className={`text-white bg-black/20 dark:bg-black/60 rounded-xl min-h-[120px] min-w-[120px] flex flex-col justify-center items-center ${
         isSwapped
           ? "xl:w-full w-[120px] h-full"
           : "w-full xl:w-[120px] xl:h-full"
@@ -238,6 +237,18 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
       >
         {getEnglishName(species.names)}
       </p>
+      <div className="flex justify-center items-center gap-2 pb-2">
+        {pokemon.types.map((type, _index) => {
+          return (
+            <div
+              style={{ backgroundColor: `var(--${type.type.name})` }}
+              className="w-[20px] h-[20px] flex items-center justify-center rounded-full p-[3px] border border-black/30"
+            >
+              <img src={`icons/${type.type.name}.svg`} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

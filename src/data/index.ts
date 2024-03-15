@@ -26,6 +26,7 @@ const blocked_forms = [
   "blue-meteor",
   "indigo-meteor",
   "violet-meteor",
+  "-battle-bond",
 ];
 
 export default blocked_forms;

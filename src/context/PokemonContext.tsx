@@ -10,7 +10,7 @@ import {
   PokemonSpecies,
   Type,
 } from "pokenode-ts";
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useEffect, useState, useCallback, createContext } from "react";
 import { blocked_forms } from "../data";
 
@@ -76,6 +76,12 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [pokemonTypes, setPokemonTypes] = useState<Type[]>();
   const [evoChain, setEvoChain] = useState<EvolutionChain>();
 
+  const varRef = useRef<number>();
+  const formRef = useRef<number>();
+
+  varRef.current = varietyIndex;
+  formRef.current = formIndex;
+
   useEffect(() => {
     getPokemonList().then((l) => {
       setPokemonList(l.results);
@@ -83,20 +89,24 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   }, []);
 
   useEffect(() => {
-    loadData(0, 0);
-  }, [pokemonId]);
+    loadData();
+  }, [pokemonId, varietyIndex, formIndex]);
 
   useEffect(() => {
-    loadData(varietyIndex, formIndex);
-  }, [varietyIndex, formIndex]);
+    setVarietyIndex(0);
+    setFormIndex(0);
+  }, [pokemonId]);
 
   useEffect(() => {
     document.title = `Pokedex - #${pokemonId
       .toString()
       .padStart(4, "0")} | ${getEnglishName(speciesData?.names)}`;
-  }, [speciesData, pokemonId]);
+  }, [speciesData]);
 
-  const loadData = (id: number, formId: number) => {
+  const loadData = () => {
+    const id = varRef.current || 0;
+    const formId = formRef.current || 0;
+
     setIsLoading(true);
     setVarietyIndex(id);
     setFormIndex(formId);

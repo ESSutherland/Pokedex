@@ -1,11 +1,11 @@
 import { usePokemonContext } from "../context/PokemonContext";
 
 const PokemonTypes = () => {
-  const { pokemonData } = usePokemonContext();
+  const { currentForm } = usePokemonContext();
 
   return (
     <div className="flex gap-4 capitalize text-xl font-semibold mb-4">
-      {pokemonData?.types.map((type, index) => {
+      {currentForm?.types.map((type, index) => {
         return (
           <div
             key={index}

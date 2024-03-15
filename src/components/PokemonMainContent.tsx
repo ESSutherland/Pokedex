@@ -7,19 +7,12 @@ import PokemonInfo from "./PokemonInfo";
 import PokemonShinyButton from "./PokemonShinyButton";
 import PokemonCryButton from "./PokemonCryButton";
 import PokemonFormBar from "./PokemonFormBar";
-import { FlavorText } from "pokenode-ts";
 import PokemonFlavorText from "./PokemonFlavorText";
 
 const PokemonMainContent = () => {
   const [isShiny, setIsShiny] = useState(false);
-  const {
-    isLoading,
-    varietyIndex,
-    pokemonId,
-    currentForm,
-    formIndex,
-    speciesData,
-  } = usePokemonContext();
+  const { isLoading, varietyIndex, pokemonId, currentForm, formIndex } =
+    usePokemonContext();
 
   useEffect(() => {
     setIsShiny(false);

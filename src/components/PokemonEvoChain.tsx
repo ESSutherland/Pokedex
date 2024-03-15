@@ -176,7 +176,7 @@ const PokemonEvoChain = () => {
       {isLoading ? (
         <></>
       ) : (
-        <div className="sm:w-[90%] max-w-[1200px] sm:rounded-xl overflow-hidden w-full min-h-[300px] dark:text-white bg-black/10 dark:bg-black/60 mt-5 flex flex-col items-center justify-center text-center relative mb-10">
+        <div className="sm:min-w-[50%] sm:rounded-xl overflow-hidden min-h-[300px] px-10 dark:text-white bg-black/10 dark:bg-black/60 mt-5 flex flex-col items-center justify-center text-center relative mb-10">
           <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase absolute top-0">
             Evolution Line
           </span>

@@ -13,8 +13,10 @@ const PokemonShinyButton = ({ handleShinyClick, isShiny }: Props) => {
         <button
           type="button"
           onClick={handleShinyClick}
-          className={`bg-slate-200 p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center ${
-            isShiny ? "bg-yellow-400" : "bg-slate-200"
+          className={`p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center ${
+            isShiny
+              ? "bg-yellow-400"
+              : "bg-slate-200 dark:bg-slate-600 dark:text-white"
           }`}
         >
           <IoSparkles className="w-[25px] h-[25px] opacity-70" />

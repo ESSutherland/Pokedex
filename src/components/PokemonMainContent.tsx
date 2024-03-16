@@ -27,7 +27,7 @@ const PokemonMainContent = () => {
   };
 
   return (
-    <div className="flex w-full min-h-[680px] overflow-x-clip relative items-center justify-center flex-col xl:flex-row sm:mt-4 gap-2">
+    <div className="flex w-full min-h-[680px] overflow-x-clip relative justify-center items-center xl:items-stretch flex-col xl:flex-row sm:mt-4 gap-2">
       <div
         className="flex absolute w-[100rem] h-[100rem] rounded-full -top-[55rem] left-1/2 -translate-x-[28rem] -z-[1] items-center border-2 border-black/10 transition-all"
         style={{
@@ -42,8 +42,8 @@ const PokemonMainContent = () => {
         </div>
       ) : (
         <>
-          <PokemonFlavorText extraCss="hidden xl:block" />
-          <div className="flex flex-col w-full h-full justify-between items-center">
+          <PokemonFlavorText extraCss="hidden xl:flex" />
+          <div className="flex flex-col w-full justify-between items-center">
             <PokemonHeader />
             <PokemonTypes />
             <div className="flex justify-center items-center">
@@ -58,7 +58,7 @@ const PokemonMainContent = () => {
             </div>
             <PokemonFormBar />
           </div>
-          <PokemonFlavorText extraCss="xl:hidden block" />
+          <PokemonFlavorText extraCss="xl:hidden flex" />
           <PokemonInfo />
         </>
       )}

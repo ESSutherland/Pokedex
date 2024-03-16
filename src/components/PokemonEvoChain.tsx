@@ -151,7 +151,7 @@ const PokemonEvoChain = () => {
           varPromises.push(
             <div
               key={varData.id + "div"}
-              className={`flex items-center ${
+              className={`flex items-center  ${
                 stateRef.current
                   ? "xl:flex-col flex-row xl:w-full h-full"
                   : "flex-col xl:flex-row w-full xl:h-full"
@@ -222,7 +222,7 @@ const PokemonEvoChain = () => {
             <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
           ) : (
             <div
-              className={`flex justify-center items-center mt-10 mb-4 px-5 ${
+              className={`flex justify-center items-stretch mt-10 mb-4 px-5 ${
                 stateRef.current
                   ? "xl:flex-col flex-row"
                   : "flex-col xl:flex-row"
@@ -232,7 +232,7 @@ const PokemonEvoChain = () => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col xl:flex-row w-full h-full items-center justify-center"
+                    className="flex flex-col xl:flex-row w-full items-center justify-center "
                   >
                     {stage as React.ReactNode}
                   </div>

@@ -58,7 +58,7 @@ const PokemonTypeEffects = () => {
       <div className="w-full panel !justify-start flex flex-col">
         <span className="title">Type Effectiveness</span>
         {!chartLoading && (
-          <div className="flex flex-wrap w-full h-full max-w-[600px] min-h-[400px] justify-center items-center gap-2 p-3 font-bold">
+          <div className="flex flex-wrap w-full h-full max-w-[600px] justify-center items-center gap-2 p-3 font-bold">
             {typeChart.map((type, index) => {
               return (
                 <div

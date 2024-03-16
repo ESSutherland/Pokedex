@@ -31,13 +31,16 @@ const PokemonBaseStats = () => {
   return (
     <>
       {!isLoading && (
-        <div className="flex flex-col gap-2 font-semibold w-full max-w-[500px] panel pb-2 mb-5">
+        <div className="flex flex-col gap-2 font-semibold w-full xl:h-full max-w-[500px] panel pb-2 xl:!justify-between">
           <span className="title">Base Stats</span>
           {pokemonData?.stats.map((stat, index) => {
             let name = getEnglishName(statData[index].names);
             let sName = name.replace("Special", "Sp.");
             return (
-              <div className="flex gap-3 justify-center items-center w-full px-3">
+              <div
+                key={stat.stat.name}
+                className="flex gap-3 justify-center items-center w-full px-3"
+              >
                 <div className="w-32">{sName}</div>
                 <div className="w-10">{stat.base_stat}</div>
                 <div className="w-[90%] bg-slate-300 dark:bg-slate-500 h-3 rounded-xl overflow-hidden">

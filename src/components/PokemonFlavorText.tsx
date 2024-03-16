@@ -19,15 +19,15 @@ const PokemonFlavorText = ({ extraCss }: Props) => {
 
   return (
     <div
-      className={`flex w-full max-w-[450px] items-center justify-center mx-10 ${extraCss}`}
+      className={`flex w-full max-w-[450px] xl:h-[80%] items-center justify-center mx-10 ${extraCss}`}
     >
       {!isLoading && (
-        <div className={`flex flex-col panel mx-10`}>
-          <div className="title h-8"></div>
-          <p className="text-xl font-bold px-5 py-8">
+        <div className={`flex flex-col panel xl:justify-start xl:h-full`}>
+          <span className="title">Entry Data</span>
+          <div className="text-xl flex items-center font-bold px-5 py-8 pt-1/2 h-full">
             {speciesData &&
               getEnglishFlavorText(speciesData?.flavor_text_entries)}
-          </p>
+          </div>
         </div>
       )}
     </div>

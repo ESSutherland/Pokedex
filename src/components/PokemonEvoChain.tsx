@@ -25,6 +25,7 @@ const PokemonEvoChain = () => {
 
   stateRef.current = isSwapped;
 
+  //used for pokemon whos evolution line's direction should be swapped
   const swappedEvoLines = [22, 33, 47, 67, 213, 383];
 
   useEffect(() => {

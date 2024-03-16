@@ -15,7 +15,7 @@ const PokemonScrollPane = ({ id }: Props) => {
         updateVariety(0);
         updateForm(0);
       }}
-      className={`flex items-center justify-center w-[95%] h-[70px] hover:cursor-pointer rounded-md border-2 border-black/20 ${
+      className={`flex items-center justify-center w-[95%] h-[70px] hover:cursor-pointer rounded-md border-2 border-black/20 last:mb-20 ${
         id == pokemonId
           ? "bg-slate-500 dark:bg-slate-600"
           : "bg-slate-300 dark:bg-slate-800"

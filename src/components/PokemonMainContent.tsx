@@ -34,7 +34,7 @@ const PokemonMainContent = () => {
           backgroundColor: `var(--${getFirstType()})`,
         }}
       >
-        <div className="w-[90%] h-[90%] bg-black/40 rounded-full ml-3"></div>
+        <div className="w-[90%] h-[90%] bg-white/40 dark:bg-black/40 rounded-full ml-3"></div>
       </div>
       {isLoading ? (
         <div className="absolute top-32 xl:top-[199px] left-1/2 -translate-x-1/2">

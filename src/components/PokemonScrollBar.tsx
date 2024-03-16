@@ -16,7 +16,7 @@ const PokemonScrollBar = ({ active }: Props) => {
   };
   return (
     <div
-      className={`fixed lg:max-h-[700px] w-[250px] lg:w-[350px] z-10 top-16 lg:top-24 right-0 lg:left-40 overflow-hidden ${
+      className={`fixed lg:max-h-screen w-[250px] lg:w-[350px] z-10 top-16 right-0 lg:left-36 overflow-hidden ${
         active ? "h-full" : "h-0 border-0 overflow-hidden"
       } transition-all`}
     >

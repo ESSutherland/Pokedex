@@ -100,12 +100,12 @@ const PokemonEvoChain = () => {
                   //account for manaphy
                   <div className="flex flex-col justify-center items-center w-[120px]">
                     <FaLongArrowAltLeft
-                      className={`text-[4rem]  ${
+                      className={`text-[4rem] text-black/60 dark:text-white/60 ${
                         stateRef.current ? "xl:hidden" : "hidden xl:block"
                       }`}
                     />
                     <FaLongArrowAltUp
-                      className={`text-[4rem]  ${
+                      className={`text-[4rem] text-black/60 dark:text-white/60 ${
                         stateRef.current ? "hidden xl:block" : "xl:hidden"
                       }`}
                     />
@@ -119,12 +119,12 @@ const PokemonEvoChain = () => {
                 ) : (
                   <div className="flex flex-col justify-center items-center w-[120px]">
                     <FaLongArrowAltRight
-                      className={`text-[4rem]   ${
+                      className={`text-[4rem] text-black/60 dark:text-white/60  ${
                         stateRef.current ? "xl:hidden" : "hidden xl:block"
                       }`}
                     />
                     <FaLongArrowAltDown
-                      className={`text-[4rem]  ${
+                      className={`text-[4rem] text-black/60 dark:text-white/60 ${
                         stateRef.current ? "hidden xl:block" : "xl:hidden"
                       }`}
                     />
@@ -216,7 +216,7 @@ const PokemonEvoChain = () => {
       {isLoading ? (
         <></>
       ) : (
-        <div className="sm:min-w-[40%] min-h-[100px] sm:w-fit w-full mt-5 relative pb-5 mb-3 flex flex-col panel">
+        <div className="min-h-[100px] w-full sm:w-[95%] mt-5 relative pb-5 mb-3 flex flex-col panel">
           <span className="title">Evolution Line</span>
           {evoLoading ? (
             <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
@@ -256,7 +256,7 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
   const { getEnglishName, updatePokemon, updateVariety } = usePokemonContext();
   return (
     <div
-      className={`text-white bg-black/20 dark:bg-black/60 border-2 border-black/50 dark:border-white/50 rounded-xl min-h-[120px] min-w-[120px] flex flex-col justify-center items-center ${
+      className={`bg-white/20 dark:text-white dark:bg-black/60 border-2 border-black/50 dark:border-white/50 rounded-xl min-h-[120px] min-w-[120px] flex flex-col justify-center items-center gap-1 ${
         isSwapped
           ? "xl:w-full w-[120px] h-full"
           : "w-full xl:w-[120px] xl:h-full"
@@ -264,7 +264,7 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
     >
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`}
-        className="h-[80px] w-[80px] mb-2"
+        className="h-[80px] w-[80px]"
       />
       <p
         className="text-center font-semibold hover:underline cursor-pointer"

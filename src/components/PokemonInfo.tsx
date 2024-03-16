@@ -83,7 +83,7 @@ const PokemonInfo = () => {
             <div className="py-3 text-sm font-semibold w-full flex justify-center items-center">
               {getMaleRate()}%<span className="mx-1 px-1 text-blue-500">♂</span>
               <div
-                className={`w-[50%] flex h-5 rounded-2xl overflow-hidden bg-slate-400 border-[3px] border-black/50`}
+                className={`w-[50%] flex h-5 rounded-2xl overflow-hidden bg-slate-400 border border-black/50 dark:border-white/50`}
               >
                 <div
                   style={{ width: `${getMaleRate()}%` }}

@@ -26,7 +26,7 @@
   }
 
   body {
-    @apply bg-slate-200 dark:bg-slate-900 overflow-x-hidden font-plex;
+    @apply bg-slate-200 dark:bg-slate-950 overflow-x-hidden font-plex;
   }
 
   img {
@@ -45,6 +45,22 @@
 
   .ltr {
     direction: ltr;
+  }
+
+  ::-webkit-scrollbar {
+    @apply hidden sm:block sm:w-3 dark:bg-slate-700;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-300 dark:bg-slate-950;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-400 dark:bg-slate-700;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-500 dark:bg-slate-500;
   }
 
   .scrollbar::-webkit-scrollbar {

@@ -16,7 +16,7 @@ import {
 import PokemonEvoDetail from "./PokemonEvoDetail";
 
 const PokemonEvoChain = () => {
-  const { isLoading, evoChain, getResouceByUrl, pokemonId } =
+  const { isLoading, evoChain, getResourceByUrl, pokemonId } =
     usePokemonContext();
 
   const [stageList, setStageList] = useState<any[]>([]);
@@ -52,7 +52,7 @@ const PokemonEvoChain = () => {
     evoData: ChainLink,
     stageNum: number
   ) => {
-    let evoLine: any = await getResouceByUrl(evoData.species.url).then(
+    let evoLine: any = await getResourceByUrl(evoData.species.url).then(
       async (res) => {
         let result = [
           {
@@ -88,7 +88,7 @@ const PokemonEvoChain = () => {
       let detailIndex = 0;
       for (const v of cur.species.varieties) {
         if (!blocked_evo_forms.some((form) => v.pokemon.name.includes(form))) {
-          const varData: Pokemon = await getResouceByUrl(v.pokemon.url);
+          const varData: Pokemon = await getResourceByUrl(v.pokemon.url);
           let result = [];
           if (
             cur.evoDetails.length > 0 ||
@@ -232,7 +232,7 @@ const PokemonEvoChain = () => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col xl:flex-row w-full items-center justify-center "
+                    className="flex flex-col xl:flex-row w-full items-center justify-center"
                   >
                     {stage as React.ReactNode}
                   </div>

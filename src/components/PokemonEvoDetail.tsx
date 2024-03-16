@@ -20,13 +20,12 @@ interface Props {
   index: number;
 }
 const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
-  const { getResouceByUrl, getEnglishName } = usePokemonContext();
+  const { getResourceByUrl, getEnglishName } = usePokemonContext();
   const [detailLoading, setDetailLoading] = useState(true);
   const [detailData, setDetailData] = useState<any>();
 
   useEffect(() => {
     getEvoDetail().then((res) => {
-      console.log(res);
       setDetailData(res);
     });
   }, []);
@@ -39,8 +38,6 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
     else if (evoD && species.varieties.length === 1) idx = evoD?.length - 1;
 
     const evoDetail = evoD ? (evoD[idx] ? evoD[idx] : evoD[0]) : null;
-
-    console.log(pokemon.name, evoDetail);
 
     if (evoDetail?.trigger.name == "level-up") {
       let item = null;
@@ -56,7 +53,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
       }
 
       if (evoDetail?.held_item) {
-        item = await getResouceByUrl(evoDetail?.held_item.url);
+        item = await getResourceByUrl(evoDetail?.held_item.url);
         itemName = getEnglishName(item.names);
         tool_string += ` Holding ${itemName}`;
         level_conditions.push(
@@ -70,7 +67,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
       }
 
       if (evoDetail?.known_move) {
-        move = await getResouceByUrl(evoDetail?.known_move.url);
+        move = await getResourceByUrl(evoDetail?.known_move.url);
         moveName = getEnglishName(move.names);
         tool_string += ` Knowing ${moveName}`;
         level_conditions.push(<FaHandFist />);
@@ -78,7 +75,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
 
       if (evoDetail?.known_move_type) {
         const icon = `icons/${evoDetail?.known_move_type.name}.svg`;
-        const type = await getResouceByUrl(evoDetail?.known_move_type.url);
+        const type = await getResourceByUrl(evoDetail?.known_move_type.url);
         const typeName = getEnglishName(type.names);
 
         tool_string += ` Knowing ${typeName} Move`;
@@ -139,11 +136,11 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
       }
 
       if (evoDetail?.party_species) {
-        let pokemon_species = await getResouceByUrl(
+        let pokemon_species = await getResourceByUrl(
           evoDetail?.party_species.url
         );
         let pokemonName = getEnglishName(pokemon_species.names);
-        let pokemon = await getResouceByUrl(
+        let pokemon = await getResourceByUrl(
           pokemon_species.varieties[0].pokemon.url
         );
         tool_string += ` With ${pokemonName} In Party`;
@@ -200,7 +197,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
       let tool_string = "Pokemon";
 
       if (evoDetail?.held_item) {
-        item = await getResouceByUrl(evoDetail?.held_item.url);
+        item = await getResourceByUrl(evoDetail?.held_item.url);
         itemName = getEnglishName(item.names);
         tool_string += ` Holding ${itemName}`;
         evo_conditions.push(
@@ -208,11 +205,11 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
         );
       }
       if (evoDetail?.trade_species) {
-        let pokemon_species = await getResouceByUrl(
+        let pokemon_species = await getResourceByUrl(
           evoDetail?.trade_species.url
         );
         let pokemonName = getEnglishName(pokemon_species.names);
-        let pokemon = await getResouceByUrl(
+        let pokemon = await getResourceByUrl(
           pokemon_species.varieties[0].pokemon.url
         );
         tool_string += ` With ${pokemonName}`;
@@ -238,7 +235,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
       );
     } else if (evoDetail?.trigger.name === "use-item") {
       const item =
-        evoDetail?.item && (await getResouceByUrl(evoDetail?.item.url));
+        evoDetail?.item && (await getResourceByUrl(evoDetail?.item.url));
       let itemName = getEnglishName(item.names);
       let itemSprite = "";
       let evo_conditions = [];
@@ -337,7 +334,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
 
       move =
         evoDetail?.known_move &&
-        (await getResouceByUrl(evoDetail?.known_move.url));
+        (await getResourceByUrl(evoDetail?.known_move.url));
       moveName = getEnglishName(move.names);
       tool_string += `Use Agile Style ${moveName} 20 Times`;
       evo_conditions.push(<FaHandFist />);
@@ -383,7 +380,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
     }
     //account for probopass's special evolution requirement
     else if (pokemon.name === "probopass") {
-      let item = await getResouceByUrl("https://pokeapi.co/api/v2/item/83/");
+      let item = await getResourceByUrl("https://pokeapi.co/api/v2/item/83/");
       let itemName = getEnglishName(item.names);
 
       detail = (
@@ -395,7 +392,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
     }
     //account for electrode-hisui's special evolution requirement
     else if (pokemon.name === "electrode-hisui") {
-      let item = await getResouceByUrl("https://pokeapi.co/api/v2/item/85/");
+      let item = await getResourceByUrl("https://pokeapi.co/api/v2/item/85/");
       let itemName = getEnglishName(item.names);
 
       detail = (
@@ -554,7 +551,7 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
     }
     //account for crabominable special evolution requirement
     else if (pokemon.name === "crabominable") {
-      let item = await getResouceByUrl("https://pokeapi.co/api/v2/item/885/");
+      let item = await getResourceByUrl("https://pokeapi.co/api/v2/item/885/");
       let itemName = getEnglishName(item.names);
 
       detail = (

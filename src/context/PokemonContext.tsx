@@ -53,7 +53,7 @@ interface PokemonContextType {
   >;
   getEnglishName: (nameList: Name[] | undefined) => string;
   getEnglish: (nameList: any[] | undefined) => string;
-  getResouceByUrl: (url: string) => Promise<any>;
+  getResourceByUrl: (url: string) => Promise<any>;
 }
 
 interface PokemonAbilityType {
@@ -122,7 +122,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
       getEggGroups(species).then((eggGroups) => {
         setEggGroups(eggGroups);
       });
-      getResouceByUrl(species.growth_rate.url).then((growthRate) => {
+      getResourceByUrl(species.growth_rate.url).then((growthRate) => {
         setPokemonGrowthRate(growthRate as GrowthRate);
       });
       getVarietiesData(species).then((varieties: Pokemon[]) => {
@@ -255,7 +255,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return Promise.all(eggGroups);
   };
 
-  const getResouceByUrl = async (url: string) => {
+  const getResourceByUrl = async (url: string) => {
     let res = await apiClient.utility.getResourceByUrl(url);
     return res;
   };
@@ -325,7 +325,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         setPokemonList,
         getEnglishName,
         getEnglish,
-        getResouceByUrl,
+        getResourceByUrl,
       }}
     >
       {children}

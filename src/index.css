@@ -23,6 +23,10 @@
     --rock: #c9bb8a;
     --steel: #5695a3;
     --water: #539ddf;
+
+    --physical: rgb(212, 82, 34);
+    --special: rgb(22, 106, 175);
+    --status: rgb(117, 117, 117);
   }
 
   body {
@@ -97,5 +101,9 @@
 
   .detail-box .hover-text {
     @apply hidden absolute w-fit min-w-[150px] p-2 bg-white/90 dark:bg-black/90 border border-black/40 dark:border-white/40 rounded-lg top-8;
+  }
+
+  .move-table td {
+    @apply text-center font-semibold;
   }
 }

@@ -3,7 +3,7 @@ import { usePokemonContext } from "../context/PokemonContext";
 import { Pokemon, Stat } from "pokenode-ts";
 
 const PokemonBaseStats = () => {
-  const { pokemonData, getEnglishName, getResouceByUrl, isLoading } =
+  const { pokemonData, getEnglishName, getResourceByUrl, isLoading } =
     usePokemonContext();
 
   const [baseTotal, setBaseTotal] = useState(0);
@@ -23,7 +23,7 @@ const PokemonBaseStats = () => {
 
   const getStatData = async (pokemon: Pokemon) => {
     const stats = pokemon.stats.map(async (stat) => {
-      return getResouceByUrl(stat.stat.url);
+      return getResourceByUrl(stat.stat.url);
     });
     return Promise.all(stats);
   };

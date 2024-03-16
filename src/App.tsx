@@ -8,6 +8,7 @@ import PokemonBaseStats from "./components/PokemonBaseStats";
 import PokemonTypeEffects from "./components/PokemonTypeEffects";
 import Footer from "./components/Footer";
 import PokemonMiscData from "./components/PokemonMiscData";
+import PokemonMoves from "./components/PokemonMoves";
 
 function App() {
   const [listActive, setListActive] = useState(false);
@@ -24,6 +25,9 @@ function App() {
               <PokemonTypeEffects />
               <PokemonMiscData />
             </div>
+            <PokemonMoves category="level-up" title="Level Up Moves" />
+            <PokemonMoves category="machine" title="Machine Moves" />
+            <PokemonMoves category="egg" title="Egg Moves" />
           </PokemonContextProvider>
           <div className="absolute top-0 -z-10 w-full h-[5000px] bg-slate-300 dark:bg-slate-800"></div>
         </div>

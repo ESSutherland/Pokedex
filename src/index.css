@@ -92,7 +92,7 @@
   }
 
   .detail-box {
-    @apply bg-white/40 dark:bg-black/40 flex justify-center border border-black/40 dark:border-white/40 items-center gap-2 p-2 relative text-xs m-2 rounded-lg hover:cursor-help min-h-[40px];
+    @apply bg-white/40 dark:bg-black/40 flex justify-center border border-black/40 dark:border-white/40 items-center gap-2 p-2 relative text-xs m-2 rounded-lg hover:cursor-help min-h-[40px] font-semibold;
   }
 
   .detail-box .hover-text {

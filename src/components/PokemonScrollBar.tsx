@@ -40,7 +40,7 @@ const PokemonScrollBar = ({ active }: Props) => {
           />
         </div>
 
-        <div
+        <ul
           className={`bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md pt-[60px] overflow-y-scroll w-full h-full transition-all`}
         >
           {pokemonList?.map((_pokemon, index) => {
@@ -49,7 +49,7 @@ const PokemonScrollBar = ({ active }: Props) => {
                 <PokemonScrollPane id={index + 1} key={"scroll" + index} />
               );
           })}
-        </div>
+        </ul>
       </React.Fragment>
     </div>
   );

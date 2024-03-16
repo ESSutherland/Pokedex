@@ -9,7 +9,7 @@ const PokemonScrollPane = ({ id }: Props) => {
     usePokemonContext();
 
   return (
-    <div
+    <li
       onClick={() => {
         updatePokemon(id);
         updateVariety(0);
@@ -22,14 +22,14 @@ const PokemonScrollPane = ({ id }: Props) => {
       } transition-all`}
     >
       <PokemonScrollIcon id={id} />
-      <div
+      <span
         className={`font-bold text-2xl  h-full p-4 flex justify-center items-center bg-black/40 rounded-md ${
           id === pokemonId ? " text-slate-300" : " text-slate-200"
         }`}
       >
         <p>#{id.toString().padStart(4, "0")}</p>
-      </div>
-    </div>
+      </span>
+    </li>
   );
 };
 

@@ -31,7 +31,7 @@ const PokemonBaseStats = () => {
   return (
     <>
       {!isLoading && (
-        <div className="flex flex-col gap-2 font-semibold w-full !justify-between h-full xl:max-w-[500px] panel pb-2">
+        <div className="flex flex-col gap-4 font-semibold w-full !justify-between xl:max-w-[500px] panel pb-2">
           <span className="title">Base Stats</span>
           {pokemonData?.stats.map((stat, index) => {
             let name = getEnglishName(statData[index].names);
@@ -45,7 +45,7 @@ const PokemonBaseStats = () => {
                 <div className="w-10">{stat.base_stat}</div>
                 <div className="w-[80%] bg-slate-300 dark:bg-slate-500 h-3 rounded-xl overflow-hidden border border-black/40 dark:border-white/40">
                   <div
-                    className="bg-slate-500 dark:bg-slate-700 h-full"
+                    className="bg-slate-500 dark:bg-slate-800 h-full"
                     style={{
                       width: `${(stat.base_stat / baseTotal) * 100}%`,
                     }}

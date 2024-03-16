@@ -14,12 +14,12 @@ function App() {
   return (
     <>
       <div className="flex mt-16 justify-center w-full relative min-h-[1200px] overflow-hidden pb-10">
-        <div className="w-full xl:mx-36 relative flex flex-col items-center">
+        <div className="w-full h-full xl:mx-36 relative flex flex-col items-center">
           <PokemonContextProvider>
             <PokemonMainContent />
             <PokemonScrollBar active={listActive} />
             <PokemonEvoChain />
-            <div className="w-[95%] flex flex-col xl:flex-row justify-center items-center gap-4">
+            <div className="w-[95%] h-full flex flex-col xl:flex-row justify-center gap-4">
               <PokemonBaseStats />
               <PokemonTypeEffects />
               <PokemonMiscData />

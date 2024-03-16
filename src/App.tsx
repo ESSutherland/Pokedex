@@ -7,6 +7,7 @@ import PokemonEvoChain from "./components/PokemonEvoChain";
 import PokemonBaseStats from "./components/PokemonBaseStats";
 import PokemonTypeEffects from "./components/PokemonTypeEffects";
 import Footer from "./components/Footer";
+import PokemonMiscData from "./components/PokemonMiscData";
 
 function App() {
   const [listActive, setListActive] = useState(false);
@@ -18,9 +19,10 @@ function App() {
             <PokemonMainContent />
             <PokemonScrollBar active={listActive} />
             <PokemonEvoChain />
-            <div className="w-full flex flex-col xl:flex-row justify-center items-start gap-3">
+            <div className="w-[95%] flex flex-col xl:flex-row justify-center items-center gap-4">
               <PokemonBaseStats />
               <PokemonTypeEffects />
+              <PokemonMiscData />
             </div>
           </PokemonContextProvider>
           <div className="absolute top-0 -z-10 w-full h-[5000px] bg-slate-300 dark:bg-slate-800"></div>

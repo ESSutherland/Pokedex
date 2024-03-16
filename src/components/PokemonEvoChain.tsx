@@ -222,7 +222,7 @@ const PokemonEvoChain = () => {
             <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
           ) : (
             <div
-              className={`flex justify-center items-center gap-3 mt-10 mb-4 px-5 ${
+              className={`flex justify-center items-center mt-10 mb-4 px-5 ${
                 stateRef.current
                   ? "xl:flex-col flex-row"
                   : "flex-col xl:flex-row"

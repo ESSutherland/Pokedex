@@ -63,14 +63,14 @@ const PokemonInfo = () => {
       ) : (
         <>
           <div className="flex w-full gap-3 justify-center items-center">
-            <div className="w-1/2 panel flex flex-col">
+            <div className="w-1/2 panel flex flex-col font-semibold">
               <span className="title">Weight</span>
               <div className="py-2 text-xl w-full border-b border-black/60">
                 {getWeightInKg()}kg
               </div>
               <div className="py-2 text-xl w-full">{getWeightInLbs()}lbs</div>
             </div>
-            <div className="w-1/2 panel flex flex-col">
+            <div className="w-1/2 panel flex flex-col font-semibold">
               <span className="title">Height</span>
               <div className="py-2 text-xl w-full border-b border-black/80">
                 {getHeightInM()}m

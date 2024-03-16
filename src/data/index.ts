@@ -118,4 +118,5 @@ export const blocked_evo_forms = [
   "-tera",
   "-stellar",
   "-mask",
+  "-female",
 ];

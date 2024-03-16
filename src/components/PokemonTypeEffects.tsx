@@ -55,38 +55,40 @@ const PokemonTypeEffects = () => {
 
   return (
     !isLoading && (
-      <div className="w-full max-w-[600px] flex flex-col panel">
+      <div className="w-full h-full panel !justify-start flex flex-col">
         <span className="title">Type Effectiveness</span>
-        {!chartLoading && (
-          <div className="flex flex-wrap justify-center gap-2 p-3 font-bold">
-            {typeChart.map((type, index) => {
-              return (
-                <div
-                  key={index}
-                  className="w-[80px] h-[100px] flex flex-col justify-center items-center bg-white/40 dark:bg-black/40 rounded-xl gap-2"
-                >
+        <div className="w-full h-full max-w-[600px]">
+          {!chartLoading && (
+            <div className="flex flex-wrap justify-center h-full gap-2 p-3 font-bold">
+              {typeChart.map((type, index) => {
+                return (
                   <div
-                    style={{ backgroundColor: `var(--${type.name})` }}
-                    className="w-[40px] h-[40px] flex items-center justify-center rounded-full p-2 border-2 border-black/30"
+                    key={index}
+                    className="w-[80px] h-[100px] flex flex-col justify-center items-center bg-white/40 dark:bg-black/40 rounded-xl gap-2"
                   >
-                    <img src={`icons/${type.name}.svg`} alt={type.name} />
+                    <div
+                      style={{ backgroundColor: `var(--${type.name})` }}
+                      className="w-[40px] h-[40px] flex items-center justify-center rounded-full p-2 border-2 border-black/30"
+                    >
+                      <img src={`icons/${type.name}.svg`} alt={type.name} />
+                    </div>
+                    <span
+                      className={`${
+                        type.damage > 1
+                          ? "text-red-500"
+                          : type.damage < 1
+                          ? "text-green-500"
+                          : ""
+                      }`}
+                    >
+                      {type.damage}x
+                    </span>
                   </div>
-                  <span
-                    className={`${
-                      type.damage > 1
-                        ? "text-red-500"
-                        : type.damage < 1
-                        ? "text-green-500"
-                        : ""
-                    }`}
-                  >
-                    {type.damage}x
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        )}
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     )
   );

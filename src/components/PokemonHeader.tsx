@@ -8,6 +8,8 @@ const PokemonHeader = () => {
     speciesData,
     pokemonList,
     updatePokemon,
+    updateVariety,
+    updateForm,
     getEnglishName,
     pokemonGenus,
   } = usePokemonContext();
@@ -17,12 +19,16 @@ const PokemonHeader = () => {
   const handlePrevButtonClick = () => {
     if (pokemonId > 1) {
       updatePokemon(pokemonId - 1);
+      updateVariety(0);
+      updateForm(0);
     }
   };
 
   const handleNextButtonClick = () => {
     if (pokemonId < max_id) {
       updatePokemon(pokemonId + 1);
+      updateVariety(0);
+      updateForm(0);
     }
   };
 

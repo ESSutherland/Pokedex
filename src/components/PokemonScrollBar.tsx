@@ -21,7 +21,7 @@ const PokemonScrollBar = ({ active }: Props) => {
       } transition-all`}
     >
       <React.Fragment>
-        <div className="flex justify-center items-center absolute top-0 w-full lg:ml-2 bg-slate-200 dark:bg-slate-900">
+        <div className="flex justify-center items-center absolute top-0 w-full lg:ml-2 bg-slate-200 dark:bg-slate-900 -translate-y-[1px]">
           <input
             className="text-left px-2 py-1 my-3 mx-10 rounded-xl ltr outline-none w-full max-w-[300px] dark:bg-slate-600 dark:text-white"
             type="text"

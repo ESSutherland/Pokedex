@@ -66,4 +66,12 @@
   .scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-slate-500 dark:bg-slate-500;
   }
+
+  .panel {
+    @apply bg-white/40 dark:bg-black/40 dark:text-white text-center items-center overflow-hidden justify-center rounded-lg border border-black/60 shadow-xl;
+  }
+
+  .panel .title {
+    @apply w-full bg-slate-300 dark:bg-slate-700 font-bold text-lg uppercase;
+  }
 }

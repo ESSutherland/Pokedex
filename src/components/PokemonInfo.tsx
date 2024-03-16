@@ -26,10 +26,8 @@ const PokemonInfo = () => {
 
     let num: number = pokemonData?.height / 10;
     let num2 = Math.round(num * meterToFeet * 10) / 10;
-
     let num3 = Math.floor(num2);
     let num4 = num2 - num3;
-
     let num5 = Math.round(12 * num4);
 
     let feet = `${num3}'`;
@@ -58,37 +56,33 @@ const PokemonInfo = () => {
   };
 
   return (
-    <div className="flex flex-wrap gap-2 w-full max-w-[500px] justify-center">
+    <div className="flex flex-col gap-3 w-full sm:max-w-[445px] xl:mx-10 justify-center items-center">
       {isLoading ? (
         <></>
       ) : (
         <>
-          <div className="w-[150px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center overflow-hidden justify-center rounded-lg border border-black/60 dark:text-white shadow-xl">
-            <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
-              Weight
-            </span>
-            <div className="py-2 text-xl w-full border-b border-black/60">
-              {getWeightInKg()}kg{" "}
+          <div className="flex w-full gap-3 justify-center items-center">
+            <div className="w-1/2 panel flex flex-col">
+              <span className="title">Weight</span>
+              <div className="py-2 text-xl w-full border-b border-black/60">
+                {getWeightInKg()}kg
+              </div>
+              <div className="py-2 text-xl w-full">{getWeightInLbs()}lbs</div>
             </div>
-            <div className="py-2 text-xl w-full">{getWeightInLbs()}lbs</div>
-          </div>
-          <div className="w-[150px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center overflow-hidden justify-center rounded-lg border border-black/60 dark:text-white shadow-xl">
-            <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
-              Height
-            </span>
-            <div className="py-2 text-xl w-full border-b border-black/80">
-              {getHeightInM()}m{" "}
+            <div className="w-1/2 panel flex flex-col">
+              <span className="title">Height</span>
+              <div className="py-2 text-xl w-full border-b border-black/80">
+                {getHeightInM()}m
+              </div>
+              <div className="py-2 text-xl w-full">{getHeightInFt()}ft</div>
             </div>
-            <div className="py-2 text-xl w-full">{getHeightInFt()}ft</div>
           </div>
-          <div className="w-[308px] text-center flex flex-col bg-slate-200 dark:bg-slate-600 items-center overflow-hidden justify-center rounded-lg border border-black/60 dark:text-white shadow-xl">
-            <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase">
-              Gender Rate
-            </span>
-            <div className="py-3 text-sm font-semibold w-full border-b border-black/80 flex justify-center items-center">
-              {getMaleRate()}% <span className="mx-1 text-blue-500">♂</span>{" "}
+          <div className="w-full panel flex flex-col">
+            <span className="title">Gender Rate</span>
+            <div className="py-3 text-sm font-semibold w-full flex justify-center items-center">
+              {getMaleRate()}%<span className="mx-1 px-1 text-blue-500">♂</span>
               <div
-                className={`w-[150px] flex h-5 rounded-2xl overflow-hidden bg-slate-400 border border-black/70 box-content`}
+                className={`w-[50%] flex h-5 rounded-2xl overflow-hidden bg-slate-400 border-[3px] border-black/50`}
               >
                 <div
                   style={{ width: `${getMaleRate()}%` }}
@@ -98,8 +92,9 @@ const PokemonInfo = () => {
                   style={{ width: `${getFemaleRate()}%` }}
                   className="bg-pink-500 h-full"
                 ></div>
-              </div>{" "}
-              <span className="mx-1 text-pink-500">♀</span> {getFemaleRate()}%
+              </div>
+              <span className="mx-1 px-1 text-pink-500">♀</span>
+              {getFemaleRate()}%
             </div>
           </div>
           <PokemonAbilities />

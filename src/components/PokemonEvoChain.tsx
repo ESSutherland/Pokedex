@@ -176,10 +176,8 @@ const PokemonEvoChain = () => {
       {isLoading ? (
         <></>
       ) : (
-        <div className="sm:min-w-[50%] sm:rounded-xl overflow-hidden min-h-[300px] px-10 dark:text-white bg-black/10 dark:bg-black/60 mt-5 flex flex-col items-center justify-center text-center relative mb-10">
-          <span className="w-full bg-slate-400 dark:bg-slate-700 font-bold text-lg uppercase absolute top-0">
-            Evolution Line
-          </span>
+        <div className="sm:min-w-[50%] sm:w-fit w-full mt-5 relative pb-5 mb-5 flex flex-col panel">
+          <span className="title">Evolution Line</span>
           {evoLoading ? (
             <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin"></div>
           ) : (
@@ -218,7 +216,7 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
   const { getEnglishName, updatePokemon, updateVariety } = usePokemonContext();
   return (
     <div
-      className={`text-white bg-black/20 dark:bg-black/60 rounded-xl min-h-[120px] min-w-[120px] flex flex-col justify-center items-center ${
+      className={`text-white bg-black/20 dark:bg-black/60 border-2 border-black/50 dark:border-white/50 rounded-xl min-h-[120px] min-w-[120px] flex flex-col justify-center items-center ${
         isSwapped
           ? "xl:w-full w-[120px] h-full"
           : "w-full xl:w-[120px] xl:h-full"
@@ -231,6 +229,7 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
       <p
         className="text-center font-semibold hover:underline cursor-pointer"
         onClick={() => {
+          console.log(species.id, varIndex);
           updatePokemon(species.id);
           updateVariety(varIndex);
         }}

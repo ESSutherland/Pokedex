@@ -1,5 +1,6 @@
 import { usePokemonContext } from "../context/PokemonContext";
 import PokemonAbilities from "./PokemonAbilities";
+import PokemonEggGroups from "./PokemonEggGroups";
 
 const PokemonInfo = () => {
   const { isLoading, pokemonData, speciesData } = usePokemonContext();
@@ -97,6 +98,7 @@ const PokemonInfo = () => {
               {getFemaleRate()}%
             </div>
           </div>
+          <PokemonEggGroups />
           <PokemonAbilities />
         </>
       )}

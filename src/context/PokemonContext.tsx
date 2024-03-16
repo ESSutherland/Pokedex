@@ -1,5 +1,6 @@
 import {
   Ability,
+  EggGroup,
   EvolutionChain,
   MainClient,
   Name,
@@ -33,6 +34,7 @@ interface PokemonContextType {
   currentForm: PokemonForm | undefined;
   pokemonTypes: Type[] | undefined;
   evoChain: EvolutionChain | undefined;
+  eggGroups: EggGroup[] | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
   updateForm: (id: number) => void;
@@ -75,6 +77,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [currentForm, setCurrentForm] = useState<PokemonForm>();
   const [pokemonTypes, setPokemonTypes] = useState<Type[]>();
   const [evoChain, setEvoChain] = useState<EvolutionChain>();
+  const [eggGroups, setEggGroups] = useState<EggGroup[]>();
 
   const varRef = useRef<number>();
   const formRef = useRef<number>();
@@ -110,6 +113,9 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
       setPokemonGenus(getGenus(species));
       getEvoChain(species).then((evoChain) => {
         setEvoChain(evoChain as EvolutionChain);
+      });
+      getEggGroups(species).then((eggGroups) => {
+        setEggGroups(eggGroups);
       });
       getVarietiesData(species).then((varieties: Pokemon[]) => {
         let list = varieties.filter((x) => {
@@ -230,6 +236,14 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
     return evoChain;
   };
 
+  const getEggGroups = async (species: PokemonSpecies) => {
+    let eggGroups = species.egg_groups.map(async (group) => {
+      let e: EggGroup = await apiClient.pokemon.getEggGroupByName(group.name);
+      return e;
+    });
+    return Promise.all(eggGroups);
+  };
+
   const getResouceByUrl = async (url: string) => {
     let res = await apiClient.utility.getResourceByUrl(url);
     return res;
@@ -286,6 +300,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         currentForm,
         pokemonTypes,
         evoChain,
+        eggGroups,
         setIsLoading,
         updatePokemon,
         setSpeciesData,

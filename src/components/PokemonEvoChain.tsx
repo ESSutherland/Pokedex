@@ -13,6 +13,7 @@ import {
   FaLongArrowAltLeft,
   FaLongArrowAltUp,
 } from "react-icons/fa";
+import PokemonEvoDetail from "./PokemonEvoDetail";
 
 const PokemonEvoChain = () => {
   const { isLoading, evoChain, getResouceByUrl, pokemonId } =
@@ -84,6 +85,7 @@ const PokemonEvoChain = () => {
     for (const cur of evoData) {
       const varPromises: any = [];
       let index = 0;
+      let detailIndex = 0;
       for (const v of cur.species.varieties) {
         if (!blocked_evo_forms.some((form) => v.pokemon.name.includes(form))) {
           const varData: Pokemon = await getResouceByUrl(v.pokemon.url);
@@ -96,31 +98,43 @@ const PokemonEvoChain = () => {
               <>
                 {varData.id === 490 ? (
                   //account for manaphy
-                  <>
+                  <div className="flex flex-col justify-center items-center w-[120px]">
                     <FaLongArrowAltLeft
-                      className={`text-[4rem] mx-4  ${
+                      className={`text-[4rem]  ${
                         stateRef.current ? "xl:hidden" : "hidden xl:block"
                       }`}
                     />
                     <FaLongArrowAltUp
-                      className={`text-[4rem] my-4  ${
+                      className={`text-[4rem]  ${
                         stateRef.current ? "hidden xl:block" : "xl:hidden"
                       }`}
                     />
-                  </>
+                    <PokemonEvoDetail
+                      pokemon={v.pokemon}
+                      species={cur.species}
+                      evoD={cur.evoDetails}
+                      index={detailIndex}
+                    />
+                  </div>
                 ) : (
-                  <>
+                  <div className="flex flex-col justify-center items-center w-[120px]">
                     <FaLongArrowAltRight
-                      className={`text-[4rem] mx-4  ${
+                      className={`text-[4rem]   ${
                         stateRef.current ? "xl:hidden" : "hidden xl:block"
                       }`}
                     />
                     <FaLongArrowAltDown
-                      className={`text-[4rem] my-4  ${
+                      className={`text-[4rem]  ${
                         stateRef.current ? "hidden xl:block" : "xl:hidden"
                       }`}
                     />
-                  </>
+                    <PokemonEvoDetail
+                      pokemon={v.pokemon}
+                      species={cur.species}
+                      evoD={cur.evoDetails}
+                      index={detailIndex}
+                    />
+                  </div>
                 )}
               </>
             );
@@ -136,6 +150,7 @@ const PokemonEvoChain = () => {
           );
           varPromises.push(
             <div
+              key={varData.id + "div"}
               className={`flex items-center ${
                 stateRef.current
                   ? "xl:flex-col flex-row xl:w-full h-full"
@@ -145,6 +160,7 @@ const PokemonEvoChain = () => {
               {result}
             </div>
           );
+          detailIndex++;
         }
         index++;
       }
@@ -200,13 +216,13 @@ const PokemonEvoChain = () => {
       {isLoading ? (
         <></>
       ) : (
-        <div className="sm:min-w-[40%] min-h-[100px] sm:w-fit w-full mt-5 relative pb-5 mb-5 flex flex-col panel">
+        <div className="sm:min-w-[40%] min-h-[100px] sm:w-fit w-full mt-5 relative pb-5 mb-3 flex flex-col panel">
           <span className="title">Evolution Line</span>
           {evoLoading ? (
             <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
           ) : (
             <div
-              className={`flex justify-center items-center mt-10 mb-4 px-5 ${
+              className={`flex justify-center items-center gap-3 mt-10 mb-4 px-5 ${
                 stateRef.current
                   ? "xl:flex-col flex-row"
                   : "flex-col xl:flex-row"
@@ -216,7 +232,7 @@ const PokemonEvoChain = () => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col xl:flex-row w-full h-full items-center justify-center gap-4"
+                    className="flex flex-col xl:flex-row w-full h-full items-center justify-center"
                   >
                     {stage as React.ReactNode}
                   </div>
@@ -264,6 +280,7 @@ const EvoImage = ({ species, pokemon, isSwapped, varIndex }: Props) => {
         {pokemon.types.map((type, _index) => {
           return (
             <div
+              key={_index}
               style={{ backgroundColor: `var(--${type.type.name})` }}
               className="w-[20px] h-[20px] flex items-center justify-center rounded-full p-[3px] border border-black/30"
             >

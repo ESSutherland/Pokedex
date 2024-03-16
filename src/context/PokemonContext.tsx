@@ -2,6 +2,7 @@ import {
   Ability,
   EggGroup,
   EvolutionChain,
+  GrowthRate,
   MainClient,
   Name,
   NamedAPIResource,
@@ -36,6 +37,7 @@ interface PokemonContextType {
   evoChain: EvolutionChain | undefined;
   eggGroups: EggGroup[] | undefined;
   allTypes: NamedAPIResource[] | undefined;
+  pokemonGrowthRate: GrowthRate | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
   updateForm: (id: number) => void;
@@ -80,6 +82,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [evoChain, setEvoChain] = useState<EvolutionChain>();
   const [eggGroups, setEggGroups] = useState<EggGroup[]>();
   const [allTypes, setAllTypes] = useState<NamedAPIResource[]>();
+  const [pokemonGrowthRate, setPokemonGrowthRate] = useState<GrowthRate>();
 
   const varRef = useRef<number>();
   const formRef = useRef<number>();
@@ -118,6 +121,9 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
       });
       getEggGroups(species).then((eggGroups) => {
         setEggGroups(eggGroups);
+      });
+      getResouceByUrl(species.growth_rate.url).then((growthRate) => {
+        setPokemonGrowthRate(growthRate as GrowthRate);
       });
       getVarietiesData(species).then((varieties: Pokemon[]) => {
         let list = varieties.filter((x) => {
@@ -307,6 +313,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         evoChain,
         eggGroups,
         allTypes,
+        pokemonGrowthRate,
         setIsLoading,
         updatePokemon,
         setSpeciesData,

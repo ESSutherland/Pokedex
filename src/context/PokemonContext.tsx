@@ -35,6 +35,7 @@ interface PokemonContextType {
   pokemonTypes: Type[] | undefined;
   evoChain: EvolutionChain | undefined;
   eggGroups: EggGroup[] | undefined;
+  allTypes: NamedAPIResource[] | undefined;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   updatePokemon: (id: number) => void;
   updateForm: (id: number) => void;
@@ -78,6 +79,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   const [pokemonTypes, setPokemonTypes] = useState<Type[]>();
   const [evoChain, setEvoChain] = useState<EvolutionChain>();
   const [eggGroups, setEggGroups] = useState<EggGroup[]>();
+  const [allTypes, setAllTypes] = useState<NamedAPIResource[]>();
 
   const varRef = useRef<number>();
   const formRef = useRef<number>();
@@ -133,7 +135,10 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
           setCurrentForm(forms[formId]);
           getTypes(forms[formId]).then((types) => {
             setPokemonTypes(types);
-            setIsLoading(false);
+            apiClient.pokemon.listTypes().then((res) => {
+              setAllTypes(res.results);
+              setIsLoading(false);
+            });
           });
         });
       });
@@ -301,6 +306,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         pokemonTypes,
         evoChain,
         eggGroups,
+        allTypes,
         setIsLoading,
         updatePokemon,
         setSpeciesData,

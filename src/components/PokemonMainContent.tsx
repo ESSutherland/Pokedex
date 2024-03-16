@@ -27,7 +27,7 @@ const PokemonMainContent = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full overflow-x-clip relative flex-col xl:flex-row sm:mt-4 gap-5">
+    <div className="flex items-center justify-center w-full min-h-[680px] overflow-x-clip relative flex-col xl:flex-row sm:mt-4 gap-5">
       <PokemonFlavorText extraCss="hidden xl:block" />
       <div
         className="flex absolute w-[100rem] h-[100rem] rounded-full -top-[55rem] left-1/2 -translate-x-[28rem] -z-[1] items-center border-2 border-black/10 transition-all"

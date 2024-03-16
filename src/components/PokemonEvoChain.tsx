@@ -7,7 +7,12 @@ import {
   PokemonSpecies,
 } from "pokenode-ts";
 import { blocked_evo_forms } from "../data";
-import { FaLongArrowAltRight, FaLongArrowAltDown } from "react-icons/fa";
+import {
+  FaLongArrowAltRight,
+  FaLongArrowAltDown,
+  FaLongArrowAltLeft,
+  FaLongArrowAltUp,
+} from "react-icons/fa";
 
 const PokemonEvoChain = () => {
   const { isLoading, evoChain, getResouceByUrl, pokemonId } =
@@ -71,7 +76,7 @@ const PokemonEvoChain = () => {
   };
 
   //account for missing evo details in API
-  const missingEvoDetails = [1011, 1019, 1018, 1013];
+  const missingEvoDetails = [1011, 1019, 1018, 1013, 490];
 
   const getEvoLine = async (evoData: any) => {
     const groupedEvoData: any = {};
@@ -88,16 +93,34 @@ const PokemonEvoChain = () => {
           ) {
             result.push(
               <>
-                <FaLongArrowAltDown
-                  className={`text-[4rem] my-4 ${
-                    stateRef.current ? "hidden xl:block" : "xl:hidden"
-                  }`}
-                />
-                <FaLongArrowAltRight
-                  className={`text-[4rem] mx-4  ${
-                    stateRef.current ? "xl:hidden" : "hidden xl:block"
-                  }`}
-                />
+                {varData.id === 490 ? (
+                  //account for manaphy
+                  <>
+                    <FaLongArrowAltLeft
+                      className={`text-[4rem] mx-4  ${
+                        stateRef.current ? "xl:hidden" : "hidden xl:block"
+                      }`}
+                    />
+                    <FaLongArrowAltUp
+                      className={`text-[4rem] my-4  ${
+                        stateRef.current ? "hidden xl:block" : "xl:hidden"
+                      }`}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <FaLongArrowAltRight
+                      className={`text-[4rem] mx-4  ${
+                        stateRef.current ? "xl:hidden" : "hidden xl:block"
+                      }`}
+                    />
+                    <FaLongArrowAltDown
+                      className={`text-[4rem] my-4  ${
+                        stateRef.current ? "hidden xl:block" : "xl:hidden"
+                      }`}
+                    />
+                  </>
+                )}
               </>
             );
           }
@@ -176,13 +199,13 @@ const PokemonEvoChain = () => {
       {isLoading ? (
         <></>
       ) : (
-        <div className="sm:min-w-[50%] sm:w-fit w-full mt-5 relative pb-5 mb-5 flex flex-col panel">
+        <div className="sm:min-w-[40%] min-h-[100px] sm:w-fit w-full mt-5 relative pb-5 mb-5 flex flex-col panel">
           <span className="title">Evolution Line</span>
           {evoLoading ? (
-            <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin"></div>
+            <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
           ) : (
             <div
-              className={`flex justify-center items-center mt-10 mb-4 ${
+              className={`flex justify-center items-center mt-10 mb-4 px-5 ${
                 stateRef.current
                   ? "xl:flex-col flex-row"
                   : "flex-col xl:flex-row"

@@ -12,7 +12,7 @@ function App() {
   const [listActive, setListActive] = useState(false);
   return (
     <>
-      <div className="flex mt-16 justify-center w-full relative min-h-[1200px] overflow-hidden">
+      <div className="flex mt-16 justify-center w-full relative min-h-[1200px] overflow-hidden pb-10">
         <div className="w-full xl:mx-36 relative flex flex-col items-center">
           <PokemonContextProvider>
             <PokemonMainContent />

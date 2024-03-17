@@ -28,9 +28,9 @@ function App() {
             <PokemonMoves category="machine" title="Machine Moves" />
             <PokemonMoves category="egg" title="Egg Moves" />
 
-            <div className="fixed top-0 -z-10 w-full h-screen bg-slate-300 dark:bg-slate-800"></div>
+            <div className="fixed top-0 -z-10 w-full h-screen bg-slate-200 dark:bg-slate-800"></div>
           </div>
-          <div className="bg-slate-400 dark:bg-slate-900 w-full h-16 fixed top-0">
+          <div className="bg-slate-300 dark:bg-slate-900 w-full h-16 fixed top-0">
             <button
               type="button"
               onClick={() => setListActive(!listActive)}

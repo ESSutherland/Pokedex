@@ -82,12 +82,12 @@ const PokemonFormBar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full max-w-[400px] text-slate-200 font-semibold text-xl bg-black/50 sm:rounded-lg">
+    <div className="flex justify-between items-center w-full max-w-[400px] dark:text-slate-200 font-semibold text-xl dark:bg-black/50 bg-white/50 sm:rounded-lg">
       <button
         type="button"
         onClick={handlePrevVarietyClick}
         disabled={disablePrevButton()}
-        className="disabled:text-slate-400 flex items-center justify-center"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 flex items-center justify-center"
       >
         <FontAwesomeIcon icon={faCaretLeft} className={"w-[30px] h-[30px]"} />
       </button>
@@ -96,7 +96,7 @@ const PokemonFormBar = () => {
         type="button"
         onClick={handleNextVarietyClick}
         disabled={disableNextButton()}
-        className="disabled:text-slate-400 flex items-center justify-center"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 flex items-center justify-center"
       >
         <FontAwesomeIcon icon={faCaretRight} className="w-[30px] h-[30px]" />
       </button>

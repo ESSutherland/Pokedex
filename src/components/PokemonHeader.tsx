@@ -42,13 +42,13 @@ const PokemonHeader = () => {
 
   return (
     <div
-      className="flex justify-between w-full h-16 text-slate-100 bg-black/30 mb-4 sm:rounded-2xl"
+      className="flex justify-between w-full h-16 dark:text-slate-100 bg-white/50 dark:bg-black/50 mb-4 sm:rounded-2xl"
       ref={ref}
     >
       <button
         onClick={handlePrevButtonClick}
         disabled={pokemonId === 1}
-        className="disabled:text-slate-400 hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center"
       >
         <FontAwesomeIcon icon={faCaretLeft} className={"w-[50px] h-[50px]"} />
       </button>
@@ -63,7 +63,7 @@ const PokemonHeader = () => {
       <button
         onClick={handleNextButtonClick}
         disabled={pokemonId === max_id}
-        className="disabled:text-slate-400 hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center"
       >
         <FontAwesomeIcon icon={faCaretRight} className="w-[50px] h-[50px]" />
       </button>

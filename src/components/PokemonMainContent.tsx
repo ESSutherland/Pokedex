@@ -45,16 +45,18 @@ const PokemonMainContent = () => {
           <PokemonFlavorText extraCss="hidden xl:flex" />
           <div className="flex flex-col w-full justify-between items-center">
             <PokemonHeader />
-            <PokemonTypes />
-            <div className="flex justify-center items-center">
-              <PokemonImage is_shiny={isShiny} />
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              <PokemonShinyButton
-                handleShinyClick={handleShinyClick}
-                isShiny={isShiny}
-              />
-              <PokemonCryButton />
+            <div className="h-full w-full flex flex-col items-center justify-between bg-white/50 dark:bg-black/50 sm:rounded-xl pt-5 mb-5">
+              <PokemonTypes />
+              <div className="flex justify-center items-center">
+                <PokemonImage is_shiny={isShiny} />
+              </div>
+              <div className="flex items-center justify-center gap-4">
+                <PokemonShinyButton
+                  handleShinyClick={handleShinyClick}
+                  isShiny={isShiny}
+                />
+                <PokemonCryButton />
+              </div>
             </div>
             <PokemonFormBar />
           </div>

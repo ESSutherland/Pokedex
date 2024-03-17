@@ -101,7 +101,7 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   }, [pokemonId, varietyIndex, formIndex]);
 
   useEffect(() => {
-    document.title = `Pokedex - #${pokemonId
+    document.title = `Pokédex - #${pokemonId
       .toString()
       .padStart(4, "0")} | ${getEnglishName(speciesData?.names)}`;
   }, [speciesData]);

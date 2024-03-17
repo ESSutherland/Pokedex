@@ -116,7 +116,7 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
                   <tbody className="group select-none">
                     <tr
                       key={index}
-                      className="h-[40px] bg-white/60 dark:bg-black/60 move-table"
+                      className="h-[40px] bg-white/60 dark:bg-black/60 move-table group-hover:dark:bg-slate-700 group-hover:bg-slate-300"
                     >
                       <td className="bg-white/80 dark:bg-black/80 !max-w-[90px] !min-w-[75px] ">
                         {requirement}
@@ -149,7 +149,7 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
                       <td>{move.pp}</td>
                       <td>{move.accuracy || "---"}</td>
                     </tr>
-                    <tr className="w-full bg-white/80 dark:bg-black/80 h-32 hidden group-hover:table-row xl:group-hover:hidden transition-all">
+                    <tr className="w-full bg-slate-300 dark:bg-slate-700 h-32 hidden group-hover:table-row xl:group-hover:hidden transition-all">
                       <td colSpan={7} className="px-2 !font-normal">
                         {text}
                       </td>

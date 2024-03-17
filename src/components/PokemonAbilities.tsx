@@ -9,7 +9,7 @@ const PokemonAbilities = () => {
         return (
           <div
             key={index}
-            className="group text-lg font-bold flex flex-col text-left justify-center items-center w-full bg-white/20 dark:bg-black/10 hover:bg-black/0 transition-all hover:cursor-help"
+            className="group text-lg font-bold flex flex-col text-left justify-center items-center w-full bg-white/20 dark:bg-black/10 hover:bg-slate-200 hover:dark:bg-slate-800 transition-all hover:cursor-help"
           >
             <div className="flex items-center justify-center h-10">
               {getEnglishName(ability.ability.names)}{" "}

@@ -20,8 +20,6 @@ const PokemonHeader = () => {
     initialInView: true,
   });
 
-  console.log(inView);
-
   const max_id = pokemonList?.length || 0;
 
   const handlePrevButtonClick = () => {

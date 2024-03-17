@@ -79,14 +79,14 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
           <span className="title">{title}</span>
           <table className="w-full h-auto table table-auto border-collapse relative">
             <thead className="h-12">
-              {category === "level-up" ? <th>Lvl</th> : <th>---</th>}
-              <th>Move</th>
-              <th className="hidden xl:table-cell">Desc.</th>
-              <th>Type</th>
-              <th>CAT.</th>
-              <th>PWR.</th>
+              {category === "level-up" ? <th>LVL</th> : <th>---</th>}
+              <th>MOVE</th>
+              <th className="hidden xl:table-cell">DESCRIPTION</th>
+              <th>TYPE</th>
+              <th>CAT</th>
+              <th>PWR</th>
               <th>PP</th>
-              <th>ACC.</th>
+              <th>ACC</th>
             </thead>
             {moveDataList.map((move, index) => {
               const moveName = getEnglishName(move.names);

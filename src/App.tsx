@@ -34,7 +34,7 @@ function App() {
             <button
               type="button"
               onClick={() => setListActive(!listActive)}
-              className="absolute top-2 right-4 xl:left-40 z-10 text-white h-12 w-12 flex items-center justify-center"
+              className="absolute top-2 right-4 xl:left-4 z-10 text-white h-12 w-12 flex items-center justify-center"
             >
               {listActive ? (
                 <IoClose className="w-[90%] h-[90%]" />

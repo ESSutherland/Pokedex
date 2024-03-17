@@ -15,7 +15,7 @@ const PokemonHeader = () => {
     pokemonGenus,
     isLoading,
   } = usePokemonContext();
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 1,
     initialInView: true,
   });

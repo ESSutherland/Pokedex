@@ -16,7 +16,7 @@ const PokemonScrollBar = ({ active }: Props) => {
   };
   return (
     <div
-      className={`fixed lg:max-h-screen w-[250px] lg:w-[350px] z-10 top-16 right-0 lg:left-36 overflow-hidden ${
+      className={`fixed lg:max-h-screen w-[250px] lg:w-[450px] z-10 top-16 right-0 lg:left-0 overflow-hidden ${
         active ? "h-full" : "h-0 border-0 overflow-hidden"
       } transition-all`}
     >
@@ -30,7 +30,7 @@ const PokemonScrollBar = ({ active }: Props) => {
             ref={ref}
           ></input>
           <IoCloseCircle
-            className={`absolute right-12 text-lg dark:text-slate-200`}
+            className={`absolute right-12 lg:right-20 text-lg dark:text-slate-200`}
             onClick={() => {
               setSearch("");
               if (ref.current) {
@@ -44,7 +44,11 @@ const PokemonScrollBar = ({ active }: Props) => {
           className={`bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md pt-[60px] overflow-y-scroll w-full h-full transition-all`}
         >
           {pokemonList?.map((_pokemon, index) => {
-            if (_pokemon.name.includes(search.toLowerCase()) || search === "")
+            if (
+              _pokemon.name.includes(search.toLowerCase()) ||
+              (index + 1).toString().startsWith(search) ||
+              search === ""
+            )
               return (
                 <PokemonScrollPane id={index + 1} key={"scroll" + index} />
               );

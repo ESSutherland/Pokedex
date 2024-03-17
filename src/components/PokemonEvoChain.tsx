@@ -32,9 +32,6 @@ const PokemonEvoChain = () => {
   useEffect(() => {
     setStageList([]);
     setEvoLoading(true);
-  }, [pokemonId]);
-
-  useEffect(() => {
     if (evoChain)
       getEvoData(evoChain, evoChain.chain, 0).then((res) => {
         setIsSwapped(swappedEvoLines.includes(res[0].chainId as number));

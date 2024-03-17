@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { usePokemonContext } from "../context/PokemonContext";
+import { useInView } from "react-intersection-observer";
 
 const PokemonHeader = () => {
   const {
@@ -12,7 +13,14 @@ const PokemonHeader = () => {
     updateForm,
     getEnglishName,
     pokemonGenus,
+    isLoading,
   } = usePokemonContext();
+  const { ref, inView, entry } = useInView({
+    threshold: 1,
+    initialInView: true,
+  });
+
+  console.log(inView);
 
   const max_id = pokemonList?.length || 0;
 
@@ -33,7 +41,10 @@ const PokemonHeader = () => {
   };
 
   return (
-    <div className="flex justify-between w-full h-16 text-slate-100 bg-black/30 mb-4 sm:rounded-2xl">
+    <div
+      className="flex justify-between w-full h-16 text-slate-100 bg-black/30 mb-4 sm:rounded-2xl"
+      ref={ref}
+    >
       <button
         onClick={handlePrevButtonClick}
         disabled={pokemonId === 1}
@@ -41,12 +52,14 @@ const PokemonHeader = () => {
       >
         <FontAwesomeIcon icon={faCaretLeft} className={"w-[50px] h-[50px]"} />
       </button>
+
       <div className="flex flex-col text-4xl font-bold text-center">
-        {getEnglishName(speciesData?.names)}{" "}
+        {getEnglishName(speciesData?.names)}
         <span className="text-sm">
           #{pokemonId.toString().padStart(4, "0")} | {pokemonGenus}
         </span>
       </div>
+
       <button
         onClick={handleNextButtonClick}
         disabled={pokemonId === max_id}
@@ -54,6 +67,17 @@ const PokemonHeader = () => {
       >
         <FontAwesomeIcon icon={faCaretRight} className="w-[50px] h-[50px]" />
       </button>
+
+      <div
+        className={`fixed top-0 left-1/2 -translate-x-1/2 flex flex-col text-4xl font-bold text-center z-30 transition-all origin-bottom scale-y-0 ${
+          isLoading ? "" : inView ? "" : "scale-y-100"
+        }`}
+      >
+        {getEnglishName(speciesData?.names)}
+        <span className="text-sm">
+          #{pokemonId.toString().padStart(4, "0")} | {pokemonGenus}
+        </span>
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const PokemonAbilities = () => {
                 <span className="ml-3 text-[12px] leading-tight">(Hidden)</span>
               )}
             </div>
-            <div className="flex justify-center items-center w-full bg-white/20 dark:bg-black/20 text-sm text-center h-0 scale-y-0 group-hover:h-[100px] group-hover:scale-y-100 transition-all px-4">
+            <div className="flex justify-center items-center w-full bg-white/20 dark:bg-black/20 text-sm text-center h-0 origin-top scale-y-0 group-hover:h-[100px] group-hover:scale-y-100 transition-all px-4">
               {getEnglish(abilityList[index].ability.flavor_text_entries)}
             </div>
           </div>

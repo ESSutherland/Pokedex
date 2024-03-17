@@ -8,6 +8,7 @@ const PokemonTypeEffects = () => {
   const [chartLoading, setChartLoading] = useState(true);
 
   useEffect(() => {
+    setChartLoading(true);
     getTypeChart().then((res) => {
       getDamageFrom(res).then((c) => {
         setTypeChart(c);

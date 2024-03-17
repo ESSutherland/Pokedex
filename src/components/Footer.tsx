@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="text-slate-700 dark:text-slate-300 text-xs text-center h-[20px] mt-1">
+    <footer className="text-slate-700 dark:text-slate-300 text-xs text-center">
       <p>
         &copy; 2024 Ethan Sutherland. All Rights Reserved | Pokémon and
         Respective Names are Trademark & &copy; of The Pokémon Company,

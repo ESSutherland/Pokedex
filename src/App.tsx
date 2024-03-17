@@ -9,18 +9,17 @@ import PokemonTypeEffects from "./components/PokemonTypeEffects";
 import Footer from "./components/Footer";
 import PokemonMiscData from "./components/PokemonMiscData";
 import PokemonMoves from "./components/PokemonMoves";
-
 function App() {
   const [listActive, setListActive] = useState(false);
   return (
     <>
       <div className="flex mt-16 justify-center w-full relative min-h-[1200px] overflow-hidden pb-10">
-        <div className="w-full h-full xl:mx-36 relative flex flex-col items-center">
-          <PokemonContextProvider>
+        <PokemonContextProvider>
+          <div className="w-full h-full xl:mx-36 relative flex flex-col items-center">
             <PokemonMainContent />
             <PokemonScrollBar active={listActive} />
             <PokemonEvoChain />
-            <div className="w-[95%] h-full flex flex-col xl:flex-row justify-center gap-4">
+            <div className="w-[95%] h-full flex flex-col xl:flex-row justify-center gap-4 mb-4">
               <PokemonBaseStats />
               <PokemonTypeEffects />
               <PokemonMiscData />
@@ -28,22 +27,23 @@ function App() {
             <PokemonMoves category="level-up" title="Level Up Moves" />
             <PokemonMoves category="machine" title="Machine Moves" />
             <PokemonMoves category="egg" title="Egg Moves" />
-          </PokemonContextProvider>
-          <div className="absolute top-0 -z-10 w-full h-[5000px] bg-slate-300 dark:bg-slate-800"></div>
-        </div>
-        <div className="bg-slate-400 dark:bg-slate-900 w-full h-16 fixed top-0">
-          <button
-            type="button"
-            onClick={() => setListActive(!listActive)}
-            className="absolute top-2 right-4 xl:left-40 z-10 text-white h-12 w-12 flex items-center justify-center"
-          >
-            {listActive ? (
-              <IoClose className="w-[90%] h-[90%]" />
-            ) : (
-              <IoMenu className="w-[90%] h-[90%]" />
-            )}
-          </button>
-        </div>
+
+            <div className="fixed top-0 -z-10 w-full h-screen bg-slate-300 dark:bg-slate-800"></div>
+          </div>
+          <div className="bg-slate-400 dark:bg-slate-900 w-full h-16 fixed top-0">
+            <button
+              type="button"
+              onClick={() => setListActive(!listActive)}
+              className="absolute top-2 right-4 xl:left-40 z-10 text-white h-12 w-12 flex items-center justify-center"
+            >
+              {listActive ? (
+                <IoClose className="w-[90%] h-[90%]" />
+              ) : (
+                <IoMenu className="w-[90%] h-[90%]" />
+              )}
+            </button>
+          </div>
+        </PokemonContextProvider>
       </div>
       <Footer />
     </>

@@ -8,11 +8,13 @@ interface Props {
 const PokemonLevelMoves = ({ category, title }: Props) => {
   const [moveList, setMoveList] = useState<any[]>([]);
   const [moveDataList, setMoveDataList] = useState<any[]>([]);
+  const [movesLoading, setMovesLoading] = useState(true);
 
   const { pokemonData, getEnglishName, getResourceByUrl, isLoading } =
     usePokemonContext();
 
   useEffect(() => {
+    setMovesLoading(true);
     getMoves().then((moves) => {
       var list = moves.sort((a, b) => {
         let keyA = a.details.level_learned_at;
@@ -24,6 +26,7 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
       setMoveList(list);
       getMoveData(moves).then((moveData) => {
         setMoveDataList(moveData);
+        setMovesLoading(false);
       });
     });
   }, [pokemonData]);
@@ -71,13 +74,14 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
 
   return (
     <>
-      {!isLoading && moveDataList.length > 0 && (
-        <div className="w-full xl:w-[95%] panel mt-4 flex flex-col">
+      {!isLoading && moveDataList.length > 0 && !movesLoading && (
+        <div className="w-[95%] panel flex flex-col mb-4">
           <span className="title">{title}</span>
-          <table className="w-full h-auto table border-collapse relative">
+          <table className="w-full h-auto table table-auto border-collapse relative">
             <thead className="h-12">
               {category === "level-up" ? <th>Lvl</th> : <th>---</th>}
               <th>Move</th>
+              <th className="hidden xl:table-cell">Desc.</th>
               <th>Type</th>
               <th>CAT.</th>
               <th>PWR.</th>
@@ -109,15 +113,18 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
 
               return (
                 <>
-                  <tbody className="group hover:cursor-help">
+                  <tbody className="group select-none">
                     <tr
                       key={index}
                       className="h-[40px] bg-white/60 dark:bg-black/60 move-table"
                     >
-                      <td className="bg-white/80 dark:bg-black/80">
+                      <td className="bg-white/80 dark:bg-black/80 !max-w-[90px] !min-w-[75px] ">
                         {requirement}
                       </td>
-                      <td>{moveName}</td>
+                      <td className="min-w-[120px]">{moveName}</td>
+                      <td className="hidden xl:table-cell !font-normal ">
+                        {text}
+                      </td>
                       <td className="">
                         <div
                           style={{
@@ -142,11 +149,8 @@ const PokemonLevelMoves = ({ category, title }: Props) => {
                       <td>{move.pp}</td>
                       <td>{move.accuracy || "---"}</td>
                     </tr>
-                    <tr className="w-full bg-white/80 dark:bg-black/80 h-32 hidden group-hover:table-row transition-all">
-                      <td
-                        colSpan={7}
-                        className="!text-left xl:!text-center px-2 !font-normal"
-                      >
+                    <tr className="w-full bg-white/80 dark:bg-black/80 h-32 hidden group-hover:table-row xl:group-hover:hidden transition-all">
+                      <td colSpan={7} className="px-2 !font-normal">
                         {text}
                       </td>
                     </tr>

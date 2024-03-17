@@ -19,7 +19,7 @@ const PokemonFlavorText = ({ extraCss }: Props) => {
 
   return (
     <div
-      className={`w-full justify-center items-center max-w-[450px] mx-10 ${extraCss}`}
+      className={`w-[95%] justify-center items-center max-w-[450px] mx-10 ${extraCss}`}
     >
       {!isLoading && (
         <div className={`flex flex-col panel xl:h-[80%]`}>

@@ -27,7 +27,7 @@ const PokemonMainContent = () => {
   };
 
   return (
-    <div className="flex w-full min-h-[680px] overflow-x-clip justify-center items-center xl:items-stretch flex-col xl:flex-row sm:mt-4 gap-2">
+    <div className="flex w-full min-h-[700px] overflow-x-clip justify-center items-center xl:items-stretch flex-col xl:flex-row sm:mt-4 gap-2">
       {isLoading && (
         <div className="absolute top-0 left-0 w-screen h-full bg-black/30"></div>
       )}

@@ -1,6 +1,7 @@
 import { usePokemonContext } from "../context/PokemonContext";
 import PokemonAbilities from "./PokemonAbilities";
 import PokemonEggGroups from "./PokemonEggGroups";
+import { FaStar } from "react-icons/fa6";
 
 const PokemonInfo = () => {
   const { isLoading, pokemonData, speciesData } = usePokemonContext();
@@ -62,6 +63,27 @@ const PokemonInfo = () => {
         <></>
       ) : (
         <>
+          {speciesData?.is_mythical && (
+            <div className="w-full panel flex flex-col">
+              <span className="title">
+                <FaStar className="w-full text-center text-2xl my-1 text-yellow-400" />
+              </span>
+              <span className="text-xl font-semibold">
+                This Pokémon Is Mythical
+              </span>
+            </div>
+          )}
+
+          {speciesData?.is_legendary && (
+            <div className="w-full panel flex flex-col">
+              <span className="title">
+                <FaStar className="w-full text-center text-2xl my-1 text-yellow-400" />
+              </span>
+              <span className="text-xl font-semibold">
+                This Pokémon Is Legendary
+              </span>
+            </div>
+          )}
           <div className="flex w-full gap-3 justify-center items-center">
             <div className="w-1/2 panel flex flex-col font-semibold">
               <span className="title">Weight</span>

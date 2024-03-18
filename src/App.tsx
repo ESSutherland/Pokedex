@@ -13,11 +13,11 @@ function App() {
   const [listActive, setListActive] = useState(false);
   return (
     <>
-      <nav className="bg-slate-300 dark:bg-slate-900 w-full h-16 fixed top-0 z-30">
+      <nav className="bg-slate-200 dark:bg-slate-900 w-full h-16 fixed top-0 z-30 border-b border-black/80 dark:border-white/60">
         <button
           type="button"
           onClick={() => setListActive(!listActive)}
-          className="absolute top-2 right-4 xl:left-4 z-10 text-white h-12 w-12 flex items-center justify-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
+          className="absolute top-2 right-4 xl:left-4 z-10 dark:text-white h-12 w-12 flex items-center justify-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
         >
           {listActive ? (
             <IoClose className="w-[90%] h-[90%]" />

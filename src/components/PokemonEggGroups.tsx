@@ -13,9 +13,38 @@ import {
   FaLeaf,
   FaPerson,
 } from "react-icons/fa6";
+import { missing_egg_groups } from "../data";
+import { useEffect, useState } from "react";
 
 const PokemonEggGroups = () => {
-  const { eggGroups, getEnglishName } = usePokemonContext();
+  const { eggGroups, getEnglishName, speciesData, getResourceByUrl } =
+    usePokemonContext();
+  const [groups, setGroups] = useState<any[]>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getGroups().then((data) => {
+      console.log(data);
+      setGroups(data);
+      setIsLoading(false);
+    });
+  }, [eggGroups]);
+
+  const getGroups = async () => {
+    let data: any[] = eggGroups || [];
+    Object.entries(missing_egg_groups).forEach(([id, group]) => {
+      if (id === speciesData?.id.toString()) {
+        data = group.map(async (name) => {
+          const g = await getResourceByUrl(
+            `https://pokeapi.co/api/v2/egg-group/${name}`
+          );
+          return g;
+        });
+      }
+    });
+    return Promise.all(data);
+  };
 
   const getGroupIcon = (name: string) => {
     switch (name) {
@@ -56,22 +85,24 @@ const PokemonEggGroups = () => {
     }
   };
   return (
-    <div className="panel w-full flex flex-col">
-      <span className="title">Egg Group(s)</span>
-      <div className="flex justify-center items-center gap-4">
-        {eggGroups?.map((group, index) => {
-          return (
-            <div
-              className="w-[100px] h-[100px] my-5 flex flex-col gap-2 justify-center items-center font-bold text-sm bg-black/10 border-2 border-black/80 rounded-lg"
-              key={index}
-            >
-              {getEnglishName(group.names)}
-              {getGroupIcon(group.name)}
-            </div>
-          );
-        })}
+    !isLoading && (
+      <div className="panel w-full flex flex-col">
+        <span className="title">Egg Group(s)</span>
+        <div className="flex justify-center items-center gap-4">
+          {groups?.map((group, index) => {
+            return (
+              <div
+                className="w-[100px] h-[100px] my-5 flex flex-col gap-2 justify-center items-center font-bold text-sm bg-black/10 border-2 border-black/80 rounded-lg"
+                key={index}
+              >
+                {getEnglishName(group.names)}
+                {getGroupIcon(group.name)}
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

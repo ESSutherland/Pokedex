@@ -121,3 +121,41 @@ export const blocked_evo_forms = [
   "-female",
   "stunfisk-galar",
 ];
+
+export const missing_data = {
+  1009: "It resembles an illustration published in a paranormal magazine, said to be a depiction af a super-ancient Suicune.",
+  1010: "According to the few eyewitness accounts that exist, it used its shining blades to julienne large trees and boulders.",
+  1011: "The head sticking out belongs to the fore-wyrm while the tail belongs to the core-wyrm, The two share one apple and help each other out.",
+  1012: "Poltchageist looks like a regional form of Sinistea, but it was recently discovered that the two Pokémon entirely unrelated.",
+  1013: "It prefers cool, dark places, such as the back of a shelf or the space beneath a home's floorboards. It wanders in search of prey after sunset.",
+  1014: "Okidogi is a ruffian with a short temper. It can pulverize anything by swinging around the chaind on its neck.",
+  1015: "Munkidori keeps itself somewhere safe while it toys with its foes, using psychokenisis to induce intense diziness.",
+  1016: "Fezandipiti beats its glossy wings to scatter pheromones that captivate people and Pokémon.",
+  1017: "This mischief-loving Pokémon is full of curiosity. It battles by drawing out the type-based energy contained within its masks.",
+  1018: "It digs holes on mountains, searching for food. It's so durable that being caught in a cave-in won't faze it.",
+  1019: "These capricious syrpents have banded together. On the rare occasion that their moods align, their true power is unleashed.",
+  1020: "It resembles an eerie Pokémon once shown in a paranormal magazine. That Pokémon was said to be an Entei regenerated from a fossil.",
+  1021: "It bears resemblance to a Pokémon that became a hot topic for a short while after a paranormal magazine touted it as Raikou's ancestor.",
+  1022: "It was named after a mysterious object recorded in an old book. Its body seems to be metallic.",
+  1023: "There was supposedly an incident in which it launched shining blades to cut everything around it to pieces. Little else is known about it.",
+  1024: "It’s thought that this Pokémon lived in ancient Paldea until it got caught in seismic shifts and went extinct.",
+  1025: "Its peach-shaped shell serves as storage for a potent poison. It makes poisonous mochi and serves them to people and Pokémon.",
+};
+
+export const missing_egg_groups = {
+  1011: ["plant", "dragon"],
+  1012: ["mineral", "indeterminate"],
+  1013: ["mineral", "indeterminate"],
+  1014: ["no-eggs"],
+  1015: ["no-eggs"],
+  1016: ["no-eggs"],
+  1017: ["no-eggs"],
+  1018: ["mineral", "dragon"],
+  1019: ["plant", "dragon"],
+  1020: ["no-eggs"],
+  1021: ["no-eggs"],
+  1022: ["no-eggs"],
+  1023: ["no-eggs"],
+  1024: ["no-eggs"],
+  1025: ["no-eggs"],
+};

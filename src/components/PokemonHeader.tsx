@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { usePokemonContext } from "../context/PokemonContext";
 import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 
 const PokemonHeader = () => {
   const {
@@ -19,6 +20,37 @@ const PokemonHeader = () => {
     threshold: 1,
     initialInView: true,
   });
+
+  const [genus, setGenus] = useState(pokemonGenus);
+
+  useEffect(() => {
+    //account for missing genus in API
+    switch (pokemonId) {
+      case 1011:
+        setGenus("Candy Apple Pokémon");
+        break;
+      case 1012:
+      case 1013:
+        setGenus("Matcha Pokémon");
+        break;
+      case 1014:
+      case 1015:
+      case 1016:
+        setGenus("Retainer Pokémon");
+        break;
+      case 1017:
+        setGenus("Mask Pokémon");
+        break;
+      case 1020:
+      case 1021:
+      case 1022:
+      case 1023:
+        setGenus("Paradox Pokémon");
+        break;
+      default:
+        setGenus(pokemonGenus);
+    }
+  }, [pokemonId]);
 
   const max_id = pokemonList?.length || 0;
 
@@ -54,7 +86,7 @@ const PokemonHeader = () => {
       <h1 className="flex flex-col text-4xl font-bold text-center">
         {getEnglishName(speciesData?.names)}
         <span className="text-sm">
-          #{pokemonId.toString().padStart(4, "0")} | {pokemonGenus}
+          #{pokemonId.toString().padStart(4, "0")} | {genus}
         </span>
       </h1>
 
@@ -73,7 +105,7 @@ const PokemonHeader = () => {
       >
         {getEnglishName(speciesData?.names)}
         <span className="text-sm">
-          #{pokemonId.toString().padStart(4, "0")} | {pokemonGenus}
+          #{pokemonId.toString().padStart(4, "0")} | {genus}
         </span>
       </h1>
     </section>

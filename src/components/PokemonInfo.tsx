@@ -87,11 +87,11 @@ const PokemonInfo = () => {
               >
                 <div
                   style={{ width: `${getMaleRate()}%` }}
-                  className="bg-blue-500 h-full"
+                  className="bg-gradient-to-b from-blue-500 to-blue-700 h-full"
                 ></div>
                 <div
                   style={{ width: `${getFemaleRate()}%` }}
-                  className="bg-pink-500 h-full"
+                  className="bg-gradient-to-b from-pink-500 to-pink-700 h-full"
                 ></div>
               </div>
               <span className="mx-1 px-1 text-pink-500">♀</span>

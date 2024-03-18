@@ -21,8 +21,9 @@ const PokemonCryButton = () => {
   };
 
   return (
-    <div
-      className={`p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center hover:cursor-pointer ${
+    <button
+      type="button"
+      className={`p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center hover:scale-105 active:scale-95 transition-all ${
         isPlaying
           ? "bg-green-400"
           : "bg-slate-200 dark:bg-slate-600 dark:text-white"
@@ -30,7 +31,7 @@ const PokemonCryButton = () => {
       onClick={() => handleAudioClick()}
     >
       <HiSpeakerWave className="w-[25px] h-[25px] opacity-70" />
-    </div>
+    </button>
   );
 };
 

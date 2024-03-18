@@ -48,9 +48,6 @@ interface PokemonContextType {
   setFormsList: React.Dispatch<React.SetStateAction<PokemonForm[]>>;
   setPokemonData: React.Dispatch<React.SetStateAction<Pokemon | undefined>>;
   updateVariety: (id: number) => void;
-  setPokemonList: React.Dispatch<
-    React.SetStateAction<NamedAPIResource[] | undefined>
-  >;
   getEnglishName: (nameList: Name[] | undefined) => string;
   getEnglish: (nameList: any[] | undefined) => string;
   getResourceByUrl: (url: string) => Promise<any>;
@@ -322,7 +319,6 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         setPokemonData,
         updateVariety,
         updateForm,
-        setPokemonList,
         getEnglishName,
         getEnglish,
         getResourceByUrl,

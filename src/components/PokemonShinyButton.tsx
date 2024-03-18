@@ -13,7 +13,7 @@ const PokemonShinyButton = ({ handleShinyClick, isShiny }: Props) => {
         <button
           type="button"
           onClick={handleShinyClick}
-          className={`p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center ${
+          className={`p-3 rounded-full mb-6 border-4 border-black/20 flex items-center justify-center hover:scale-105 active:scale-95 transition-all ${
             isShiny
               ? "bg-yellow-400"
               : "bg-slate-200 dark:bg-slate-600 dark:text-white"

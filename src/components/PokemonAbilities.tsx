@@ -3,7 +3,7 @@ import { usePokemonContext } from "../context/PokemonContext";
 const PokemonAbilities = () => {
   const { abilityList, getEnglishName, getEnglish } = usePokemonContext();
   return (
-    <div className="w-full panel flex flex-col gap-1">
+    <section className="w-full panel flex flex-col gap-1">
       <span className="title">Abilities</span>
       {abilityList?.map((ability, index) => {
         return (
@@ -23,7 +23,7 @@ const PokemonAbilities = () => {
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };
 

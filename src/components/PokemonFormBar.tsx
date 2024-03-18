@@ -82,25 +82,25 @@ const PokemonFormBar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full max-w-[400px] dark:text-slate-200 font-semibold text-xl dark:bg-black/50 bg-white/50 sm:rounded-lg">
+    <section className="flex justify-between items-center w-full max-w-[400px] dark:text-slate-200 font-semibold text-xl dark:bg-black/50 bg-white/50 sm:rounded-lg">
       <button
         type="button"
         onClick={handlePrevVarietyClick}
         disabled={disablePrevButton()}
-        className="disabled:text-slate-500 dark:disabled:text-slate-400 flex items-center justify-center"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 flex items-center justify-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
       >
         <FontAwesomeIcon icon={faCaretLeft} className={"w-[30px] h-[30px]"} />
       </button>
-      <div className="w-[350px] text-center text-sm">{getFormName()}</div>
+      <h3 className="w-[350px] text-center text-sm">{getFormName()}</h3>
       <button
         type="button"
         onClick={handleNextVarietyClick}
         disabled={disableNextButton()}
-        className="disabled:text-slate-500 dark:disabled:text-slate-400 flex items-center justify-center"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 flex items-center justify-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
       >
         <FontAwesomeIcon icon={faCaretRight} className="w-[30px] h-[30px]" />
       </button>
-    </div>
+    </section>
   );
 };
 

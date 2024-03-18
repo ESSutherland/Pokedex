@@ -16,8 +16,7 @@ import {
 import PokemonEvoDetail from "./PokemonEvoDetail";
 
 const PokemonEvoChain = () => {
-  const { isLoading, evoChain, getResourceByUrl, pokemonId } =
-    usePokemonContext();
+  const { isLoading, evoChain, getResourceByUrl } = usePokemonContext();
 
   const [stageList, setStageList] = useState<any[]>([]);
   const [evoLoading, setEvoLoading] = useState(true);

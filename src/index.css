@@ -88,7 +88,7 @@
   }
 
   .panel {
-    @apply bg-white/40 dark:bg-black/40 dark:text-white text-center items-center overflow-hidden justify-center rounded-lg border border-black/60 shadow-xl;
+    @apply bg-white/40 dark:bg-black/40 dark:text-white text-center items-center overflow-hidden justify-center rounded-lg border border-black/60 shadow-xl backdrop-blur-lg;
   }
 
   .panel .title {

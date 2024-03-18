@@ -41,7 +41,7 @@ const PokemonMainContent = () => {
       </div>
       {isLoading ? (
         <>
-          <div className="absolute h-[300px] w-[300px] top-[148px] sm:top-[164px] xl:top-[213px] left-1/2 -translate-x-1/2 flex flex-col">
+          <div className="absolute h-[300px] w-[300px] top-[148px] sm:top-[164px] xl:top-[223px] left-1/2 -translate-x-1/2 flex flex-col">
             <img
               src="pokeball_outline.png"
               className="h-[300px] w-[300px] animate-spin bg-white/90 dark:bg-black/90 rounded-full opacity-70"

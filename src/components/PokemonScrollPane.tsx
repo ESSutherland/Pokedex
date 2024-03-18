@@ -15,15 +15,15 @@ const PokemonScrollPane = ({ id }: Props) => {
         updateVariety(0);
         updateForm(0);
       }}
-      className={`group flex items-center justify-center w-[95%] h-[70px] hover:cursor-pointer rounded-md border-2 border-black/20 last:mb-20 ${
+      className={`group flex items-center justify-center w-[95%] hover:cursor-pointer rounded-md border-2 border-black/20 last:mb-20 ${
         id == pokemonId
           ? "bg-slate-500 dark:bg-slate-600"
-          : "bg-slate-300 dark:bg-slate-800 hover:bg-slate-700"
+          : "bg-slate-300 dark:bg-slate-800 hover:bg-slate-400 dark:hover:bg-slate-700"
       } transition-all`}
     >
       <PokemonScrollIcon id={id} active={id === pokemonId} />
       <span
-        className={`font-bold text-2xl  h-full p-4 flex justify-center items-center bg-black/40 rounded-md ${
+        className={`font-bold text-2xl  h-full p-4 flex justify-center items-center bg-black/40 rounded-s-md ${
           id === pokemonId ? " text-slate-300" : " text-slate-200"
         }`}
       >

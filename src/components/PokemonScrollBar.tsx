@@ -20,28 +20,32 @@ const PokemonScrollBar = ({ active }: Props) => {
         active ? "h-full" : "h-0 border-0 overflow-hidden"
       } transition-all`}
     >
-      <React.Fragment>
-        <div className="flex justify-center items-center absolute top-0 w-full lg:ml-2 bg-slate-200 dark:bg-slate-900 -translate-y-[1px]">
+      <>
+        <div className="flex justify-center items-center absolute top-0 w-full lg:ml-2 bg-slate-200 dark:bg-slate-900 -translate-y-[1px] z-10">
           <input
             className="text-left px-2 py-1 my-3 mx-10 rounded-xl ltr outline-none w-full max-w-[300px] dark:bg-slate-600 dark:text-white"
-            type="text"
+            type="search"
             placeholder="Search..."
             onChange={handleChange}
             ref={ref}
           ></input>
-          <IoCloseCircle
-            className={`absolute right-12 lg:right-20 text-lg dark:text-slate-200`}
-            onClick={() => {
-              setSearch("");
-              if (ref.current) {
-                (ref.current as HTMLInputElement).value = "";
-              }
-            }}
-          />
+
+          <button
+            className={`absolute right-12 lg:right-20 text-lg dark:text-slate-200 hover:cursor-pointer hover:scale-110 transition-all active:scale-95`}
+          >
+            <IoCloseCircle
+              onClick={() => {
+                setSearch("");
+                if (ref.current) {
+                  (ref.current as HTMLInputElement).value = "";
+                }
+              }}
+            />
+          </button>
         </div>
 
         <ul
-          className={`bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md pt-[60px] overflow-y-scroll w-full h-full transition-all`}
+          className={`bg-slate-200 dark:bg-slate-900 gap-1 flex flex-col items-center border-black/20 scrollbar lg:rtl shadow-2xl lg:rounded-md pt-[60px] overflow-y-scroll w-full h-full transition-all bg-opacity-80 dark:bg-opacity-80 backdrop-blur-sm`}
         >
           {pokemonList?.map((_pokemon, index) => {
             if (
@@ -54,7 +58,7 @@ const PokemonScrollBar = ({ active }: Props) => {
               );
           })}
         </ul>
-      </React.Fragment>
+      </>
     </div>
   );
 };

@@ -119,4 +119,5 @@ export const blocked_evo_forms = [
   "-stellar",
   "-mask",
   "-female",
+  "stunfisk-galar",
 ];

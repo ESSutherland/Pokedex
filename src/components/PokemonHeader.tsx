@@ -46,7 +46,7 @@ const PokemonHeader = () => {
       <button
         onClick={handlePrevButtonClick}
         disabled={pokemonId === 1}
-        className="disabled:text-slate-500 dark:disabled:text-slate-400 hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
       >
         <FontAwesomeIcon icon={faCaretLeft} className={"w-[50px] h-[50px]"} />
       </button>
@@ -61,7 +61,7 @@ const PokemonHeader = () => {
       <button
         onClick={handleNextButtonClick}
         disabled={pokemonId === max_id}
-        className="disabled:text-slate-500 dark:disabled:text-slate-400 hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
+        className="disabled:text-slate-500 dark:disabled:text-slate-400 hover:text-slate-500 dark:hover:text-slate-300 disabled:hover:cursor-not-allowed disabled:hover:text-slate-400 h-full flex justify-center items-center hover:scale-110 disabled:hover:scale-100 active:scale-95 transition-all"
       >
         <FontAwesomeIcon icon={faCaretRight} className="w-[50px] h-[50px]" />
       </button>

@@ -106,4 +106,8 @@
   .move-table td {
     @apply text-center font-semibold;
   }
+
+  ::-webkit-search-cancel-button {
+    @apply hidden;
+  }
 }

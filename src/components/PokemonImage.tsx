@@ -30,7 +30,11 @@ const PokemonImage = ({ is_shiny }: Props) => {
   }
 
   return (
-    <div className="h-[300px] w-[300px] flex items-center justify-center bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain bg-white/50 dark:bg-black/50 rounded-full">
+    <div className="h-[300px] w-[300px] flex items-center justify-center bg-center bg-no-repeat bg-contain relative">
+      <img
+        src="pokeball_outline.png"
+        className="absolute bg-white/90 dark:bg-black/90 rounded-full opacity-70"
+      />
       <img
         src={image_url ? image_url : ""}
         alt={pokemonData?.name + ` ${is_shiny ? "Shiny" : "Normal"}`}

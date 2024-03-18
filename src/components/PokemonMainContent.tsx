@@ -41,8 +41,11 @@ const PokemonMainContent = () => {
       </div>
       {isLoading ? (
         <>
-          <div className="absolute top-[148px] sm:top-[164px] xl:top-[214px] left-1/2 -translate-x-1/2 flex flex-col">
-            <div className="h-[300px] w-[300px] bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin bg-white/50 dark:bg-black/50 rounded-full"></div>
+          <div className="absolute h-[300px] w-[300px] top-[148px] sm:top-[164px] xl:top-[213px] left-1/2 -translate-x-1/2 flex flex-col">
+            <img
+              src="pokeball_outline.png"
+              className="h-[300px] w-[300px] animate-spin bg-white/90 dark:bg-black/90 rounded-full opacity-70"
+            />
             <span className="text-center text-2xl font-bold mt-5 dark:text-slate-200">
               Loading...
             </span>

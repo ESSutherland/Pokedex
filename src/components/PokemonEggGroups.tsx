@@ -25,7 +25,6 @@ const PokemonEggGroups = () => {
   useEffect(() => {
     setIsLoading(true);
     getGroups().then((data) => {
-      console.log(data);
       setGroups(data);
       setIsLoading(false);
     });

@@ -481,7 +481,9 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
       detail = (
         <div className="detail-box group">
           Walk <FaCircleQuestion />
-          <span className="hover-text">Walk 1000 Steps In Overworld</span>
+          <span className="hover-text group-hover:block">
+            Walk 1000 Steps In Overworld
+          </span>
         </div>
       );
     }

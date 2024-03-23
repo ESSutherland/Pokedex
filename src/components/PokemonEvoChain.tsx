@@ -215,7 +215,7 @@ const PokemonEvoChain = () => {
         <div className="min-h-[100px] w-[95%] mt-5 relative pb-5 mb-3 flex flex-col panel select-none">
           <span className="title">Evolution Line</span>
           {evoLoading ? (
-            <div className="bg-[url('./assets/pokeball.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
+            <div className="bg-[url('pokeball_outline.png')] bg-center bg-no-repeat bg-contain animate-spin w-[150px] h-[150px] mt-5"></div>
           ) : (
             <div
               className={`flex justify-center items-stretch mt-10 mb-4 px-5 ${

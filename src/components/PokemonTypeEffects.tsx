@@ -61,6 +61,7 @@ const PokemonTypeEffects = () => {
         {!chartLoading && (
           <div className="flex flex-wrap w-full h-full max-w-[600px] justify-center items-center gap-2 p-3 font-bold">
             {typeChart.map((type, index) => {
+              if (type.name === "stellar") return;
               return (
                 <div
                   key={index}

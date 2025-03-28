@@ -14,6 +14,7 @@ const PokemonScrollBar = ({ active }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
   return (
     <div
       className={`fixed lg:max-h-screen w-[250px] lg:w-[450px] z-10 top-16 right-0 lg:left-0 overflow-hidden ${

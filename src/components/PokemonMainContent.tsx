@@ -8,18 +8,32 @@ import PokemonShinyButton from "./PokemonShinyButton";
 import PokemonCryButton from "./PokemonCryButton";
 import PokemonFormBar from "./PokemonFormBar";
 import PokemonFlavorText from "./PokemonFlavorText";
+import PokemonGenderButton from "./PokemonGenderButton";
 
 const PokemonMainContent = () => {
   const [isShiny, setIsShiny] = useState(false);
-  const { isLoading, varietyIndex, pokemonId, currentForm, formIndex } =
-    usePokemonContext();
+  const [isFemale, setIsFemale] = useState(false);
+  const {
+    isLoading,
+    varietyIndex,
+    pokemonId,
+    currentForm,
+    formIndex,
+    speciesData,
+    pokemonData,
+  } = usePokemonContext();
 
   useEffect(() => {
     setIsShiny(false);
+    setIsFemale(false);
   }, [pokemonId, varietyIndex, formIndex]);
 
   const handleShinyClick = () => {
     setIsShiny((c) => !c);
+  };
+
+  const handleGenderClick = () => {
+    setIsFemale((c) => !c);
   };
 
   const getFirstType = () => {
@@ -59,13 +73,22 @@ const PokemonMainContent = () => {
             <div className="h-full w-full flex flex-col items-center justify-between bg-white/50 dark:bg-black/50 sm:rounded-xl pt-5 mb-5 backdrop-blur-lg">
               <PokemonTypes />
               <div className="flex justify-center items-center">
-                <PokemonImage is_shiny={isShiny} />
+                <PokemonImage is_shiny={isShiny} is_female={isFemale} />
               </div>
               <div className="flex items-center justify-center gap-4">
                 <PokemonShinyButton
                   handleShinyClick={handleShinyClick}
                   isShiny={isShiny}
                 />
+                {speciesData?.has_gender_differences &&
+                pokemonData?.is_default ? (
+                  <PokemonGenderButton
+                    handleGenderClick={handleGenderClick}
+                    is_female={isFemale}
+                  />
+                ) : (
+                  <></>
+                )}
                 <PokemonCryButton />
               </div>
             </div>

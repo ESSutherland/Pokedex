@@ -2,8 +2,9 @@ import { usePokemonContext } from "../context/PokemonContext";
 
 interface Props {
   is_shiny: boolean;
+  is_female: boolean;
 }
-const PokemonImage = ({ is_shiny }: Props) => {
+const PokemonImage = ({ is_shiny, is_female }: Props) => {
   const { pokemonData, currentForm, pokemonId } = usePokemonContext();
 
   const formPokemon = [
@@ -12,8 +13,14 @@ const PokemonImage = ({ is_shiny }: Props) => {
   ];
 
   let image_url;
-  if (!is_shiny) image_url = pokemonData?.sprites.other?.home.front_default;
-  else image_url = pokemonData?.sprites.other?.home.front_shiny;
+  if (!is_shiny)
+    image_url = !is_female
+      ? pokemonData?.sprites.other?.home.front_default
+      : pokemonData?.sprites.other?.home.front_female;
+  else
+    image_url = !is_female
+      ? pokemonData?.sprites.other?.home.front_shiny
+      : pokemonData?.sprites.other?.home.front_shiny_female;
 
   if (
     formPokemon.includes(pokemonId) &&

@@ -1,7 +1,6 @@
 import { FlavorText } from "pokenode-ts";
 import { usePokemonContext } from "../context/PokemonContext";
 import { useEffect, useState } from "react";
-import { missing_data } from "../data";
 
 interface Props {
   extraCss?: string;
@@ -11,19 +10,9 @@ const PokemonFlavorText = ({ extraCss }: Props) => {
   const [flavorText, setFlavorText] = useState("");
 
   useEffect(() => {
-    //account for missing flavor text in API
-    let ft =
+    let ft: string =
       (speciesData && getEnglishFlavorText(speciesData?.flavor_text_entries)) ||
       "";
-    const getFlavorText = () => {
-      Object.entries(missing_data).forEach(([id, text]) => {
-        if (id === speciesData?.id.toString()) {
-          ft = text;
-          return;
-        }
-      });
-    };
-    getFlavorText();
     setFlavorText(ft);
   }, [speciesData]);
 

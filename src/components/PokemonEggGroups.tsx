@@ -13,12 +13,10 @@ import {
   FaLeaf,
   FaPerson,
 } from "react-icons/fa6";
-import { missing_egg_groups } from "../data";
 import { useEffect, useState } from "react";
 
 const PokemonEggGroups = () => {
-  const { eggGroups, getEnglishName, speciesData, getResourceByUrl } =
-    usePokemonContext();
+  const { eggGroups, getEnglishName } = usePokemonContext();
   const [groups, setGroups] = useState<any[]>();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,16 +30,6 @@ const PokemonEggGroups = () => {
 
   const getGroups = async () => {
     let data: any[] = eggGroups || [];
-    Object.entries(missing_egg_groups).forEach(([id, group]) => {
-      if (id === speciesData?.id.toString()) {
-        data = group.map(async (name) => {
-          const g = await getResourceByUrl(
-            `https://pokeapi.co/api/v2/egg-group/${name}`
-          );
-          return g;
-        });
-      }
-    });
     return Promise.all(data);
   };
 

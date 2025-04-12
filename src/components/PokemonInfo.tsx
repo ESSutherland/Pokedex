@@ -40,8 +40,8 @@ const PokemonInfo = () => {
 
   const getMaleRate = () => {
     if (!speciesData) return 0;
-
-    let rate = 100 - (speciesData?.gender_rate / 8) * 100;
+    let gender_rate = speciesData.id == 1011 ? 4 : speciesData.gender_rate;
+    let rate = 100 - (gender_rate / 8) * 100;
     if (rate <= 100) {
       return rate;
     }
@@ -50,7 +50,8 @@ const PokemonInfo = () => {
 
   const getFemaleRate = () => {
     if (!speciesData) return 0;
-    let rate = (speciesData.gender_rate / 8) * 100;
+    let gender_rate = speciesData.id == 1011 ? 4 : speciesData.gender_rate;
+    let rate = (gender_rate / 8) * 100;
     if (rate > 0) {
       return rate;
     }

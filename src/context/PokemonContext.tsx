@@ -123,8 +123,8 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
         setPokemonGrowthRate(growthRate as GrowthRate);
       });
       getVarietiesData(species).then((varieties: Pokemon[]) => {
-        let list = varieties.filter((x) => {
-          return x !== undefined;
+        let list = varieties.filter((x: Pokemon) => {
+          return x.forms.length > 0;
         });
         setVarietiesList(list);
         setPokemonData(list[id]);
@@ -230,7 +230,8 @@ const PokemonContextProvider = ({ children }: PokemonContextProps) => {
   };
 
   const getTypes = async (form: PokemonForm) => {
-    let typeList = form.types.map(async (type) => {
+    if (!form) return [];
+    let typeList = form?.types?.map(async (type) => {
       let t: Type = await apiClient.pokemon.getTypeByName(type.type.name);
       return t;
     });

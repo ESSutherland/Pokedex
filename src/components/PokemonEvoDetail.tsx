@@ -153,6 +153,23 @@ const PokemonEvoDetail = ({ pokemon, species, evoD, index }: Props) => {
         );
       }
 
+      if (evoDetail?.party_type) {
+        const icon = `icons/${evoDetail?.party_type.name}.svg`;
+        const type = await getResourceByUrl(evoDetail?.party_type.url);
+        const typeName = getEnglishName(type.names);
+        tool_string += ` With ${typeName} Type Pokemon In Party`;
+        level_conditions.push(
+          <div
+            className="w-[20px] h-[20px] rounded-full flex justify-center items-center p-[3px] border border-black/30"
+            style={{
+              backgroundColor: `var(--${evoDetail?.party_type.name})`,
+            }}
+          >
+            <img src={icon} width={15}></img>
+          </div>
+        );
+      }
+
       if (pokemon.name === "marowak-alola") {
         tool_string += " In Alola";
         level_conditions.push(<FaCircleQuestion />);
